@@ -242,7 +242,7 @@ function Features() {
     <section id="features" className="relative py-24">
       <div className="mx-auto max-w-6xl px-4">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 31 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}

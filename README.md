@@ -37,7 +37,7 @@ This project is configured for automatic deployment to GitHub Pages on every pus
 
 1. Push your changes to the `main` or `master` branch
 2. GitHub Actions will automatically build and deploy your site
-3. Your site will be available at `https://yourusername.github.io/prostake-landingpage`
+3. Your site will be available at `https://yourusername.github.io/` (served from root)
 
 ### Manual Build
 
@@ -51,7 +51,7 @@ This will create a static export in the `out` directory that can be served by an
 
 ### Configuration
 
-- **Base path**: `/prostake-landingpage` (adjust in `next.config.ts` if needed)
+- **Base path**: None (served from root domain)
 - **Static export**: Enabled for GitHub Pages compatibility
 - **Images**: Unoptimized for static hosting
 

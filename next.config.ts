@@ -6,8 +6,8 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/prostake-landingpage' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/prostake-landingpage/' : '',
+  basePath: '',
+  assetPrefix: '',
   eslint: {
     ignoreDuringBuilds: true,
   },

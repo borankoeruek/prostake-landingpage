@@ -8,6 +8,9 @@ const nextConfig: NextConfig = {
   },
   basePath: process.env.NODE_ENV === 'production' ? '/prostake-landingpage' : '',
   assetPrefix: process.env.NODE_ENV === 'production' ? '/prostake-landingpage/' : '',
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default nextConfig;

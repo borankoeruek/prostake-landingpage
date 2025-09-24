@@ -100,7 +100,7 @@ function Navbar() {
           </Link>
           <div className="hidden sm:flex items-center gap-4 text-sm">
             <Link href="#features" className="opacity-80 hover:opacity-100 transition-opacity">Features</Link>
-            <Link href="#faq" className="opacity-80 hover:opacity-100 transition-opacity">FAQ</Link>
+            <Link href="/contact" className="opacity-80 hover:opacity-100 transition-opacity">Contact</Link>
             <Link href="#cta" className="opacity-80 hover:opacity-100 transition-opacity">Get Started</Link>
           </div>
           <motion.button
@@ -495,14 +495,13 @@ function Footer() {
             </div>
           </div>
 
-          {/* Links */}
+          {/* Platform */}
           <div>
             <h4 className="font-semibold text-sm mb-3">Platform</h4>
             <div className="space-y-2 text-sm">
               <Link href="#features" className="block opacity-80 hover:opacity-100 transition-opacity">Features</Link>
               <Link href="#cta" className="block opacity-80 hover:opacity-100 transition-opacity">Get Started</Link>
-              <Link href="#" className="block opacity-80 hover:opacity-100 transition-opacity">Tournaments</Link>
-              <Link href="#" className="block opacity-80 hover:opacity-100 transition-opacity">Leaderboard</Link>
+              <Link href="/contact" className="block opacity-80 hover:opacity-100 transition-opacity">Contact</Link>
             </div>
           </div>
 
@@ -510,10 +509,9 @@ function Footer() {
           <div>
             <h4 className="font-semibold text-sm mb-3">Support</h4>
             <div className="space-y-2 text-sm">
-              <Link href="#" className="block opacity-80 hover:opacity-100 transition-opacity">Help Center</Link>
-              <Link href="#" className="block opacity-80 hover:opacity-100 transition-opacity">Contact Us</Link>
-              <Link href="#" className="block opacity-80 hover:opacity-100 transition-opacity">Privacy Policy</Link>
-              <Link href="#" className="block opacity-80 hover:opacity-100 transition-opacity">Terms of Service</Link>
+              <Link href="/contact" className="block opacity-80 hover:opacity-100 transition-opacity">Help Center</Link>
+              <Link href="/contact" className="block opacity-80 hover:opacity-100 transition-opacity">Privacy Policy</Link>
+              <Link href="/contact" className="block opacity-80 hover:opacity-100 transition-opacity">Terms of Service</Link>
             </div>
           </div>
         </motion.div>
@@ -526,7 +524,7 @@ function Footer() {
           className="mt-8 pt-8 border-t border-outline/40 flex flex-col sm:flex-row items-center justify-between text-sm"
         >
           <div className="opacity-80">
-            © {new Date().getFullYear()} ProStake. All rights reserved.
+            © {new Date().getFullYear()} ProStake Inc. All rights reserved.
           </div>
           <div className="mt-2 sm:mt-0 opacity-80">
             Made with ❤️ for the gaming community

@@ -1,103 +1,551 @@
-import Image from "next/image";
+"use client";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+
+// Animated background component
+function AnimatedBackground() {
+  return (
+    <div className="fixed inset-0 overflow-hidden pointer-events-none">
+      {/* Gradient orbs */}
+      <motion.div
+        animate={{
+          x: [0, 100, 0],
+          y: [0, -50, 0],
+          scale: [1, 1.1, 1],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+        className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
+      />
+      <motion.div
+        animate={{
+          x: [0, -80, 0],
+          y: [0, 80, 0],
+          scale: [1, 0.8, 1],
+        }}
+        transition={{
+          duration: 25,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+        className="absolute bottom-1/4 -right-32 w-96 h-96 bg-primary/8 rounded-full blur-3xl"
+      />
+
+      {/* Floating particles */}
+      {[...Array(20)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-2 h-2 bg-primary/20 rounded-full"
+          animate={{
+            y: [0, -100, 0],
+            x: [0, Math.random() * 100 - 50, 0],
+            opacity: [0, 1, 0],
+          }}
+          transition={{
+            duration: 8 + Math.random() * 4,
+            repeat: Infinity,
+            delay: Math.random() * 5,
+            ease: "easeInOut",
+          }}
+          style={{
+            left: `${20 + Math.random() * 60}%`,
+            top: `${20 + Math.random() * 60}%`,
+          }}
+        />
+      ))}
+
+      {/* Grid overlay */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.1)_1px,transparent_0)] bg-[length:50px_50px] opacity-20" />
+    </div>
+  );
+}
+
+function Navbar() {
+  const APP_WEB_URL = "https://app.prostake.gg";
+  const IOS_STORE_URL = process.env.NEXT_PUBLIC_IOS_APP_URL || "https://apps.apple.com/app/id000000000";
+  const ANDROID_STORE_URL = process.env.NEXT_PUBLIC_ANDROID_APP_URL || "https://play.google.com/store/apps/details?id=com.prostake.app";
+
+  const handleLaunch = () => {
+    if (typeof window === "undefined") return;
+    const ua = navigator.userAgent || navigator.vendor || (window as any).opera || "";
+
+    const isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === "MacIntel" && (navigator as any).maxTouchPoints > 1);
+    const isAndroid = /Android/i.test(ua);
+
+    if (isIOS) {
+      window.location.href = IOS_STORE_URL;
+      return;
+    }
+    if (isAndroid) {
+      window.location.href = ANDROID_STORE_URL;
+      return;
+    }
+    window.location.href = APP_WEB_URL;
+  };
+  return (
+    <motion.div
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6 }}
+      className="sticky top-0 z-40 w-full"
+    >
+      <div className="backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-outline/40">
+        <div className="mx-auto max-w-6xl px-4 h-14 flex items-center justify-between">
+          <Link href="#" className="font-semibold tracking-tight text-lg">
+            <span className="text-primary">Pro</span>Stake
+          </Link>
+          <div className="hidden sm:flex items-center gap-4 text-sm">
+            <Link href="#features" className="opacity-80 hover:opacity-100 transition-opacity">Features</Link>
+            <Link href="#faq" className="opacity-80 hover:opacity-100 transition-opacity">FAQ</Link>
+            <Link href="#cta" className="opacity-80 hover:opacity-100 transition-opacity">Get Started</Link>
+          </div>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={handleLaunch}
+            className="rounded-md bg-primary text-onPrimary px-3 py-1.5 text-sm font-medium hover:opacity-90 transition-opacity"
+          >
+            Launch App
+          </motion.button>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+function Hero() {
+  return (
+    <section className="relative overflow-hidden min-h-screen flex items-center">
+      <div className="mx-auto max-w-6xl px-4 pt-16 pb-10 sm:pt-24 sm:pb-16">
+        {/* Main content */}
+        <div className="text-center max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="mb-8"
+          >
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight mb-6"
+            >
+              <span className="text-primary">Pro</span>
+              <span className="text-foreground">Gaming</span>
+              <br />
+              <span className="text-primary">Revolutionized</span>
+            </motion.h1>
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="mt-6 max-w-3xl mx-auto text-xl sm:text-2xl opacity-90 leading-relaxed"
+          >
+            Experience competitive gaming like never before. Stake on your favorite players,
+            compete for real money, and become part of the next generation of esports.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
+          >
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link href="#cta" className="rounded-xl bg-primary text-onPrimary px-8 py-4 font-semibold text-lg shadow-lg hover:shadow-xl transition-all">
+                Start Staking Now
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link href="#features" className="rounded-xl border-2 border-primary/30 text-primary px-8 py-4 font-semibold text-lg hover:bg-primary/10 transition-all">
+                Learn More
+              </Link>
+            </motion.div>
+          </motion.div>
+
+          {/* Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-8"
+          >
+            {[
+              { number: "$50K+", label: "Prize Pools", description: "Daily tournaments" },
+              { number: "10K+", label: "Active Players", description: "Growing community" },
+              { number: "24/7", label: "Live Matches", description: "Non-stop action" },
+            ].map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                whileHover={{ scale: 1.05 }}
+                className="text-center"
+              >
+                <div className="text-3xl sm:text-4xl font-bold text-primary mb-2">
+                  {stat.number}
+                </div>
+                <div className="text-lg font-semibold mb-1">{stat.label}</div>
+                <div className="text-sm opacity-70">{stat.description}</div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Feature highlights */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1 }}
+          className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-6"
+        >
+          {[
+            {
+              title: "Stake & Win Together",
+              body: "Back your favorite players with real stakes. When they win, you win too. Share in the prize pool based on your contribution.",
+              icon: "💰"
+            },
+            {
+              title: "Competitive Gaming",
+              body: "Join tournaments, climb leaderboards, and prove your skills in your favorite games. Real competition, real rewards.",
+              icon: "🎮"
+            },
+            {
+              title: "Automatic Settlements",
+              body: "Automatic settlements ensure almost instant payouts. No waiting, no disputes - just fast, transparent gaming.",
+              icon: "⚡"
+            },
+          ].map((feature, index) => (
+            <motion.div
+              key={feature.title}
+              whileHover={{ scale: 1.02 }}
+              className="bg-card/50 backdrop-blur-sm rounded-2xl p-6 border border-outline/20 hover:border-primary/30 transition-all"
+            >
+              <div className="text-4xl mb-4">{feature.icon}</div>
+              <h3 className="text-xl font-semibold mb-3 text-primary">{feature.title}</h3>
+              <p className="opacity-80 leading-relaxed">{feature.body}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function Features() {
+  return (
+    <section id="features" className="relative py-24">
+      <div className="mx-auto max-w-6xl px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6">
+            Built for <span className="text-primary">Competitive Gaming</span>
+          </h2>
+          <p className="text-xl opacity-80 max-w-3xl mx-auto">
+            Experience the future of esports with our revolutionary staking platform
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {[
+            {
+              title: "Create & Join Matches",
+              body: "Set up tournaments in seconds or jump into existing matches. Support for all major competitive titles.",
+              icon: "🎯",
+              color: "from-blue-500 to-cyan-500"
+            },
+            {
+              title: "Smart Staking System",
+              body: "Stake on players with confidence. Dynamic multipliers and transparent pool sharing ensure fair rewards.",
+              icon: "💎",
+              color: "from-purple-500 to-pink-500"
+            },
+            {
+              title: "Instant Settlements",
+              body: "Smart algorithms ensure almost instant payouts and match finalization. Winners get paid instantly - no waiting, no disputes.",
+              icon: "⚡",
+              color: "from-green-500 to-emerald-500"
+            },
+            {
+              title: "Live Match Tracking",
+              body: "Real-time updates and live streaming integration. Follow every moment of the action.",
+              icon: "📊",
+              color: "from-orange-500 to-red-500"
+            },
+            {
+              title: "Mobile-First Design",
+              body: "Seamless experience across all devices. Stake on the go, anywhere, anytime.",
+              icon: "📱",
+              color: "from-indigo-500 to-purple-500"
+            },
+            {
+              title: "Secure & Transparent",
+              body: "Algorithm-powered security with complete transparency. Your stakes are always protected.",
+              icon: "🔒",
+              color: "from-teal-500 to-blue-500"
+            },
+          ].map((feature, index) => (
+            <motion.div
+              key={feature.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              whileHover={{ scale: 1.02 }}
+              className="group relative bg-card/30 backdrop-blur-sm rounded-2xl p-6 border border-outline/20 hover:border-primary/30 transition-all duration-300"
+            >
+              <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300`} />
+
+              <div className="relative z-10">
+                <div className="text-5xl mb-4">{feature.icon}</div>
+                <h3 className="text-xl font-semibold mb-3 text-primary group-hover:text-primary/90 transition-colors">
+                  {feature.title}
+                </h3>
+                <p className="opacity-80 leading-relaxed group-hover:opacity-90 transition-opacity">
+                  {feature.body}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Additional features showcase */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="mt-20"
+        >
+          <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-3xl p-8 border border-primary/20">
+            <div className="text-center mb-8">
+              <h3 className="text-3xl font-bold mb-4">How Staking Works</h3>
+              <p className="text-lg opacity-80 max-w-2xl mx-auto">
+                Our revolutionary staking system makes competitive gaming accessible to everyone
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[
+                {
+                  step: "01",
+                  title: "Choose Your Player",
+                  description: "Browse active tournaments and select players you believe will dominate"
+                },
+                {
+                  step: "02",
+                  title: "Place Your Stake",
+                  description: "Invest in their success with transparent multipliers and clear risk/reward ratios"
+                },
+                {
+                  step: "03",
+                  title: "Share The Victory",
+                  description: "When your backed player wins, you receive your proportional share of the prize pool"
+                },
+              ].map((step, index) => (
+                <motion.div
+                  key={step.step}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  className="text-center p-6 rounded-2xl bg-background/50"
+                >
+                  <div className="text-4xl font-bold text-primary mb-4">{step.step}</div>
+                  <h4 className="text-lg font-semibold mb-3">{step.title}</h4>
+                  <p className="opacity-70">{step.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function CTA() {
+  return (
+    <section id="cta" className="relative py-24 overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/10" />
+      <motion.div
+        animate={{
+          scale: [1, 1.1, 1],
+          opacity: [0.3, 0.5, 0.3],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl"
+      />
+
+      <div className="mx-auto max-w-6xl px-4 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="max-w-4xl mx-auto text-center"
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="bg-gradient-to-r from-primary to-primary/80 rounded-3xl p-12 text-onPrimary shadow-2xl border border-primary/20"
+          >
+            <motion.h3
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-4xl sm:text-5xl font-bold tracking-tight mb-6"
+            >
+              Ready to Revolutionize Your Gaming?
+            </motion.h3>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-xl opacity-90 max-w-2xl mx-auto mb-8 leading-relaxed"
+            >
+              Join thousands of players already staking and winning. Be part of the future of competitive gaming.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            >
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <a
+                  href="#"
+                  className="bg-onPrimary text-primary px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all flex items-center gap-2"
+                >
+                  <span>📱</span>
+                  Download for iOS (Beta)
+                </a>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <a
+                  href="#"
+                  className="border-2 border-onPrimary/40 text-onPrimary px-8 py-4 rounded-xl font-semibold text-lg hover:bg-onPrimary/10 transition-all flex items-center gap-2"
+                >
+                  <span>🤖</span>
+                  Download for Android (Beta)
+                </a>
+              </motion.div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              className="mt-8 text-sm opacity-80"
+            >
+              🚀 Early access • ⚡ Instant setup • 💎 Premium features included
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="border-t border-outline/40 bg-card/30 backdrop-blur-sm">
+      <div className="mx-auto max-w-6xl px-4 py-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="grid grid-cols-1 md:grid-cols-4 gap-8"
+        >
+          {/* Brand */}
+          <div className="md:col-span-2">
+            <Link href="#" className="font-bold tracking-tight text-xl">
+              <span className="text-primary">Pro</span>Stake
+            </Link>
+            <p className="mt-3 text-sm opacity-80 max-w-md">
+              The next generation of competitive gaming. Stake on your favorite players and share in their victories.
+            </p>
+            <div className="mt-4 flex items-center gap-4">
+              <div className="text-xs opacity-60">🎮 Built for gamers</div>
+              <div className="text-xs opacity-60">💎 Powered by smart algorithms</div>
+            </div>
+          </div>
+
+          {/* Links */}
+          <div>
+            <h4 className="font-semibold text-sm mb-3">Platform</h4>
+            <div className="space-y-2 text-sm">
+              <Link href="#features" className="block opacity-80 hover:opacity-100 transition-opacity">Features</Link>
+              <Link href="#cta" className="block opacity-80 hover:opacity-100 transition-opacity">Get Started</Link>
+              <Link href="#" className="block opacity-80 hover:opacity-100 transition-opacity">Tournaments</Link>
+              <Link href="#" className="block opacity-80 hover:opacity-100 transition-opacity">Leaderboard</Link>
+            </div>
+          </div>
+
+          {/* Support */}
+          <div>
+            <h4 className="font-semibold text-sm mb-3">Support</h4>
+            <div className="space-y-2 text-sm">
+              <Link href="#" className="block opacity-80 hover:opacity-100 transition-opacity">Help Center</Link>
+              <Link href="#" className="block opacity-80 hover:opacity-100 transition-opacity">Contact Us</Link>
+              <Link href="#" className="block opacity-80 hover:opacity-100 transition-opacity">Privacy Policy</Link>
+              <Link href="#" className="block opacity-80 hover:opacity-100 transition-opacity">Terms of Service</Link>
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mt-8 pt-8 border-t border-outline/40 flex flex-col sm:flex-row items-center justify-between text-sm"
+        >
+          <div className="opacity-80">
+            © {new Date().getFullYear()} ProStake. All rights reserved.
+          </div>
+          <div className="mt-2 sm:mt-0 opacity-80">
+            Made with ❤️ for the gaming community
+          </div>
+        </motion.div>
+      </div>
+    </footer>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+    <div className="relative min-h-screen overflow-x-hidden">
+      <AnimatedBackground />
+      <Navbar />
+      <Hero />
+      <Features />
+      <CTA />
+      <Footer />
     </div>
   );
 }

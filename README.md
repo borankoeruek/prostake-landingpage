@@ -29,6 +29,32 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
+## Deploy on GitHub Pages
+
+This project is configured for automatic deployment to GitHub Pages on every push to the `main` or `master` branch.
+
+### Automatic Deployment
+
+1. Push your changes to the `main` or `master` branch
+2. GitHub Actions will automatically build and deploy your site
+3. Your site will be available at `https://yourusername.github.io/prostake-landingpage`
+
+### Manual Build
+
+To build locally for testing:
+
+```bash
+npm run export
+```
+
+This will create a static export in the `out` directory that can be served by any static hosting service.
+
+### Configuration
+
+- **Base path**: `/prostake-landingpage` (adjust in `next.config.ts` if needed)
+- **Static export**: Enabled for GitHub Pages compatibility
+- **Images**: Unoptimized for static hosting
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.

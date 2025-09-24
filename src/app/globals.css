@@ -1,26 +1,102 @@
 @import "tailwindcss";
 
+/* Stake-inspired dark theme (from prostake-frontend theme/stake.ts) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Core palette */
+  --background: rgb(26, 35, 58);
+  --foreground: rgb(213, 220, 235);
+  --primary: rgb(20, 117, 225);
+  --on-primary: rgb(213, 220, 235);
+  --primary-container: rgb(177, 186, 211);
+  --on-primary-container: rgb(67, 74, 78);
+
+  --secondary: rgb(85, 112, 134);
+  --on-secondary: rgb(213, 220, 235);
+  --secondary-container: rgb(20, 117, 225);
+  --on-secondary-container: rgb(213, 220, 235);
+
+  --tertiary: rgb(34, 197, 94);
+  --on-tertiary: rgb(255, 255, 255);
+  --tertiary-container: rgb(31, 255, 32);
+  --on-tertiary-container: rgb(7, 29, 42);
+
+  --surface: rgb(34, 46, 77);
+  --on-surface: rgb(213, 220, 235);
+  --surface-variant: rgb(35, 46, 73);
+  --on-surface-variant: rgb(177, 186, 211);
+
+  --outline: rgb(85, 112, 134);
+  --outline-variant: rgb(47, 69, 83);
+
+  --error: rgb(218, 61, 61);
+  --on-error: rgb(255, 255, 255);
+
+  --backdrop: rgba(33, 55, 67, 0.4);
+
+  /* Elevation (used for subtle borders/shadows) */
+  --elevation-1: rgb(45, 59, 95);
+  --elevation-2: #232E49;
 }
 
 @theme inline {
+  /* Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-onPrimary: var(--on-primary);
+  --color-primaryContainer: var(--primary-container);
+  --color-onPrimaryContainer: var(--on-primary-container);
+  --color-secondary: var(--secondary);
+  --color-onSecondary: var(--on-secondary);
+  --color-secondaryContainer: var(--secondary-container);
+  --color-onSecondaryContainer: var(--on-secondary-container);
+  --color-tertiary: var(--tertiary);
+  --color-onTertiary: var(--on-tertiary);
+  --color-surface: var(--surface);
+  --color-onSurface: var(--on-surface);
+  --color-surfaceVariant: var(--surface-variant);
+  --color-onSurfaceVariant: var(--on-surface-variant);
+  --color-outline: var(--outline);
+  --color-outlineVariant: var(--outline-variant);
+  --color-error: var(--error);
+  --color-onError: var(--on-error);
+  --color-backdrop: var(--backdrop);
+
+  /* Typography */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Radii */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Base styles */
+html,
+body {
+  height: 100%;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Nice subtle gradient backdrop for the hero */
+.app-gradient-bg {
+  position: absolute;
+  inset: -25% -10% -10% -10%;
+  background: radial-gradient(60% 60% at 70% 10%, color-mix(in oklab, var(--primary), transparent 65%) 0%, transparent 60%),
+              radial-gradient(40% 40% at 30% 20%, color-mix(in oklab, var(--secondary), transparent 65%) 0%, transparent 60%),
+              radial-gradient(60% 50% at 50% 100%, color-mix(in oklab, var(--tertiary), transparent 80%) 0%, transparent 70%);
+  filter: blur(40px);
+  opacity: .35;
+  pointer-events: none;
+}
+
+.card-surface {
+  background-color: color-mix(in oklab, var(--surface), transparent 0%);
+  border: 1px solid color-mix(in oklab, var(--outline), transparent 60%);
 }

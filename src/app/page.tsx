@@ -148,8 +148,8 @@ function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mt-6 max-w-3xl mx-auto text-xl sm:text-2xl opacity-90 leading-relaxed"
           >
-            Experience competitive gaming like never before. Stake on your favorite players,
-            compete for real money, and become part of the next generation of esports.
+            Experience competitive gaming like never before. Support your favorite players,
+            compete in tournaments, and become part of the next generation of esports.
           </motion.p>
 
           <motion.div
@@ -160,7 +160,7 @@ function Hero() {
           >
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link href="#cta" className="rounded-xl bg-primary text-onPrimary px-8 py-4 font-semibold text-lg shadow-lg hover:shadow-xl transition-all">
-                Start Staking Now
+                Start Competing Now
               </Link>
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -178,7 +178,7 @@ function Hero() {
             className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-8"
           >
             {[
-              { number: "$50K+", label: "Prize Pools", description: "Daily tournaments" },
+              { number: "$50K+", label: "Tournament Rewards", description: "Daily tournaments" },
               { number: "10K+", label: "Active Players", description: "Growing community" },
               { number: "24/7", label: "Live Matches", description: "Non-stop action" },
             ].map((stat, index) => (
@@ -206,18 +206,18 @@ function Hero() {
         >
           {[
             {
-              title: "Stake & Win Together",
-              body: "Back your favorite players with real stakes. When they win, you win too. Share in the prize pool based on your contribution.",
+              title: "Support & Compete Together",
+              body: "Back your favorite players in tournaments. When they win, you share in the excitement. Support the players who inspire you.",
               icon: "💰"
             },
             {
               title: "Competitive Gaming",
-              body: "Join tournaments, climb leaderboards, and prove your skills in your favorite games. Real competition, real rewards.",
+              body: "Join tournaments, climb leaderboards, and prove your skills in your favorite games. Real competition, real excitement.",
               icon: "🎮"
             },
             {
-              title: "Automatic Settlements",
-              body: "Automatic settlements ensure almost instant payouts. No waiting, no disputes - just fast, transparent gaming.",
+              title: "Instant Results",
+              body: "Get instant results and match finalization. No waiting, no disputes - just fast, transparent gaming.",
               icon: "⚡"
             },
           ].map((feature, index) => (
@@ -252,7 +252,7 @@ function Features() {
             Built for <span className="text-primary">Competitive Gaming</span>
           </h2>
           <p className="text-xl opacity-80 max-w-3xl mx-auto">
-            Experience the future of esports with our revolutionary staking platform
+            Experience the future of esports with our revolutionary competition platform
           </p>
         </motion.div>
 
@@ -265,14 +265,14 @@ function Features() {
               color: "from-blue-500 to-cyan-500"
             },
             {
-              title: "Smart Staking System",
-              body: "Stake on players with confidence. Dynamic multipliers and transparent pool sharing ensure fair rewards.",
+              title: "Smart Competition System",
+              body: "Compete with confidence. Dynamic rankings and transparent tournament systems ensure fair competition.",
               icon: "💎",
               color: "from-purple-500 to-pink-500"
             },
             {
-              title: "Instant Settlements",
-              body: "Smart algorithms ensure almost instant payouts and match finalization. Winners get paid instantly - no waiting, no disputes.",
+              title: "Instant Results",
+              body: "Smart algorithms ensure almost instant results and match finalization. Get results instantly - no waiting, no disputes.",
               icon: "⚡",
               color: "from-green-500 to-emerald-500"
             },
@@ -284,13 +284,13 @@ function Features() {
             },
             {
               title: "Mobile-First Design",
-              body: "Seamless experience across all devices. Stake on the go, anywhere, anytime.",
+              body: "Seamless experience across all devices. Compete on the go, anywhere, anytime.",
               icon: "📱",
               color: "from-indigo-500 to-purple-500"
             },
             {
               title: "Secure & Transparent",
-              body: "Algorithm-powered security with complete transparency. Your stakes are always protected.",
+              body: "Algorithm-powered security with complete transparency. Your data is always protected.",
               icon: "🔒",
               color: "from-teal-500 to-blue-500"
             },
@@ -329,9 +329,9 @@ function Features() {
         >
           <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-3xl p-8 border border-primary/20">
             <div className="text-center mb-8">
-              <h3 className="text-3xl font-bold mb-4">How Staking Works</h3>
+              <h3 className="text-3xl font-bold mb-4">How Competition Works</h3>
               <p className="text-lg opacity-80 max-w-2xl mx-auto">
-                Our revolutionary staking system makes competitive gaming accessible to everyone
+                Our revolutionary competition system makes competitive gaming accessible to everyone
               </p>
             </div>
 
@@ -344,13 +344,13 @@ function Features() {
                 },
                 {
                   step: "02",
-                  title: "Place Your Stake",
-                  description: "Invest in their success with transparent multipliers and clear risk/reward ratios"
+                  title: "Choose Your Support",
+                  description: "Support their success with transparent rankings and clear competition rules"
                 },
                 {
                   step: "03",
                   title: "Share The Victory",
-                  description: "When your backed player wins, you receive your proportional share of the prize pool"
+                  description: "When your backed player wins, share in the celebration and tournament success"
                 },
               ].map((step, index) => (
                 <motion.div
@@ -424,7 +424,7 @@ function CTA() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-xl opacity-90 max-w-2xl mx-auto mb-8 leading-relaxed"
             >
-              Join thousands of players already staking and winning. Be part of the future of competitive gaming.
+              Join thousands of players already competing and winning. Be part of the future of competitive gaming.
             </motion.p>
 
             <motion.div
@@ -487,7 +487,7 @@ function Footer() {
               <span className="text-primary">Pro</span>Stake
             </Link>
             <p className="mt-3 text-sm opacity-80 max-w-md">
-              The next generation of competitive gaming. Stake on your favorite players and share in their victories.
+              The next generation of competitive gaming. Support your favorite players and share in their victories.
             </p>
             <div className="mt-4 flex items-center gap-4">
               <div className="text-xs opacity-60">🎮 Built for gamers</div>

@@ -76,14 +76,29 @@ function Navbar() {
             <span className="text-primary">Pro</span>Stake
           </Link>
           <div className="hidden sm:flex items-center gap-4 text-sm">
-            <Link href="/#features" className="opacity-80 hover:opacity-100 transition-opacity">Features</Link>
-            <Link href="/#cta" className="opacity-80 hover:opacity-100 transition-opacity">Get Started</Link>
-            <Link href="/contact" className="opacity-80 hover:opacity-100 transition-opacity">Contact</Link>
+            <Link
+              href="/#features"
+              className="opacity-80 hover:opacity-100 transition-opacity"
+            >
+              Features
+            </Link>
+            <Link
+              href="/#cta"
+              className="opacity-80 hover:opacity-100 transition-opacity"
+            >
+              Get Started
+            </Link>
+            <Link
+              href="/contact"
+              className="opacity-80 hover:opacity-100 transition-opacity"
+            >
+              Contact
+            </Link>
           </div>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => window.location.href = "https://app.prostake.gg"}
+            onClick={() => (window.location.href = "https://app.prostake.gg")}
             className="rounded-md bg-primary text-onPrimary px-3 py-1.5 text-sm font-medium hover:opacity-90 transition-opacity"
           >
             Launch App
@@ -111,11 +126,14 @@ function Footer() {
               <span className="text-primary">Pro</span>Stake
             </Link>
             <p className="mt-3 text-sm opacity-80 max-w-md">
-              The next generation of competitive gaming. Support your favorite players and share in their victories.
+              The next generation of competitive gaming. Join tournaments and
+              prove your skills against the best.
             </p>
             <div className="mt-4 flex items-center gap-4">
               <div className="text-xs opacity-60">🎮 Built for gamers</div>
-              <div className="text-xs opacity-60">💎 Powered by smart algorithms</div>
+              <div className="text-xs opacity-60">
+                💎 Powered by smart algorithms
+              </div>
             </div>
           </div>
 
@@ -123,11 +141,36 @@ function Footer() {
           <div>
             <h4 className="font-semibold text-sm mb-3">Platform</h4>
             <div className="space-y-2 text-sm">
-              <Link href="/#features" className="block opacity-80 hover:opacity-100 transition-opacity">Features</Link>
-              <Link href="/#cta" className="block opacity-80 hover:opacity-100 transition-opacity">Get Started</Link>
-              <Link href="/contact" className="block opacity-80 hover:opacity-100 transition-opacity">Contact</Link>
-              <Link href="/contact" className="block opacity-80 hover:opacity-100 transition-opacity">Tournaments</Link>
-              <Link href="/contact" className="block opacity-80 hover:opacity-100 transition-opacity">Leaderboard</Link>
+              <Link
+                href="/#features"
+                className="block opacity-80 hover:opacity-100 transition-opacity"
+              >
+                Features
+              </Link>
+              <Link
+                href="/#cta"
+                className="block opacity-80 hover:opacity-100 transition-opacity"
+              >
+                Get Started
+              </Link>
+              <Link
+                href="/contact"
+                className="block opacity-80 hover:opacity-100 transition-opacity"
+              >
+                Contact
+              </Link>
+              <Link
+                href="/contact"
+                className="block opacity-80 hover:opacity-100 transition-opacity"
+              >
+                Tournaments
+              </Link>
+              <Link
+                href="/contact"
+                className="block opacity-80 hover:opacity-100 transition-opacity"
+              >
+                Leaderboard
+              </Link>
             </div>
           </div>
 
@@ -135,9 +178,24 @@ function Footer() {
           <div>
             <h4 className="font-semibold text-sm mb-3">Support</h4>
             <div className="space-y-2 text-sm">
-              <Link href="/contact" className="block opacity-80 hover:opacity-100 transition-opacity">Help Center</Link>
-              <Link href="/contact" className="block opacity-80 hover:opacity-100 transition-opacity">Privacy Policy</Link>
-              <Link href="/contact" className="block opacity-80 hover:opacity-100 transition-opacity">Terms of Service</Link>
+              <Link
+                href="/contact"
+                className="block opacity-80 hover:opacity-100 transition-opacity"
+              >
+                Help Center
+              </Link>
+              <Link
+                href="/contact"
+                className="block opacity-80 hover:opacity-100 transition-opacity"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                href="/contact"
+                className="block opacity-80 hover:opacity-100 transition-opacity"
+              >
+                Terms of Service
+              </Link>
             </div>
           </div>
         </motion.div>
@@ -181,7 +239,8 @@ export default function Contact() {
                 Contact <span className="text-primary">Us</span>
               </h1>
               <p className="text-xl opacity-80 max-w-3xl mx-auto">
-                Get in touch with the ProStake team. We're here to help you with any questions about our platform.
+                Get in touch with the ProStake team. We&apos;re here to help you
+                with any questions about our platform.
               </p>
             </motion.div>
 
@@ -194,14 +253,20 @@ export default function Contact() {
                 className="space-y-8"
               >
                 <div>
-                  <h2 className="text-2xl font-bold mb-6 text-primary">Get In Touch</h2>
+                  <h2 className="text-2xl font-bold mb-6 text-primary">
+                    Get In Touch
+                  </h2>
                   <div className="space-y-4">
                     <div className="flex items-start gap-4">
                       <div className="text-2xl">🏢</div>
                       <div>
-                        <h3 className="font-semibold text-lg">Company Address</h3>
+                        <h3 className="font-semibold text-lg">
+                          Company Address
+                        </h3>
                         <p className="opacity-80">ProStake Inc.</p>
-                        <p className="opacity-80">1111B S Governors Ave STE 39981</p>
+                        <p className="opacity-80">
+                          1111B S Governors Ave STE 39981
+                        </p>
                         <p className="opacity-80">Dover, DE 19904</p>
                       </div>
                     </div>
@@ -218,13 +283,14 @@ export default function Contact() {
                         </a>
                       </div>
                     </div>
-
                   </div>
                 </div>
 
                 {/* Business Hours */}
                 <div>
-                  <h3 className="text-xl font-semibold mb-4 text-primary">Business Hours</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-primary">
+                    Business Hours
+                  </h3>
                   <div className="space-y-2 opacity-80">
                     <div className="flex justify-between">
                       <span>Monday - Friday:</span>
@@ -249,11 +315,15 @@ export default function Contact() {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-outline/20"
               >
-                <h2 className="text-2xl font-bold mb-6 text-primary">Send us a Message</h2>
+                <h2 className="text-2xl font-bold mb-6 text-primary">
+                  Send us a Message
+                </h2>
                 <form className="space-y-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium mb-2">First Name</label>
+                      <label className="block text-sm font-medium mb-2">
+                        First Name
+                      </label>
                       <input
                         type="text"
                         className="w-full px-4 py-3 bg-background border border-outline/40 rounded-lg focus:outline-none focus:border-primary transition-colors"
@@ -261,7 +331,9 @@ export default function Contact() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium mb-2">Last Name</label>
+                      <label className="block text-sm font-medium mb-2">
+                        Last Name
+                      </label>
                       <input
                         type="text"
                         className="w-full px-4 py-3 bg-background border border-outline/40 rounded-lg focus:outline-none focus:border-primary transition-colors"
@@ -271,7 +343,9 @@ export default function Contact() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">Email</label>
+                    <label className="block text-sm font-medium mb-2">
+                      Email
+                    </label>
                     <input
                       type="email"
                       className="w-full px-4 py-3 bg-background border border-outline/40 rounded-lg focus:outline-none focus:border-primary transition-colors"
@@ -280,7 +354,9 @@ export default function Contact() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">Subject</label>
+                    <label className="block text-sm font-medium mb-2">
+                      Subject
+                    </label>
                     <select className="w-full px-4 py-3 bg-background border border-outline/40 rounded-lg focus:outline-none focus:border-primary transition-colors">
                       <option>General Inquiry</option>
                       <option>Technical Support</option>
@@ -291,7 +367,9 @@ export default function Contact() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">Message</label>
+                    <label className="block text-sm font-medium mb-2">
+                      Message
+                    </label>
                     <textarea
                       rows={6}
                       className="w-full px-4 py-3 bg-background border border-outline/40 rounded-lg focus:outline-none focus:border-primary transition-colors resize-none"
@@ -320,18 +398,34 @@ export default function Contact() {
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
                 <div>
-                  <h3 className="font-semibold text-lg mb-4 text-primary">Company Information</h3>
+                  <h3 className="font-semibold text-lg mb-4 text-primary">
+                    Company Information
+                  </h3>
                   <div className="space-y-2 opacity-80">
-                    <div><strong>Company Name:</strong> ProStake Inc.</div>
-                    <div><strong>Incorporated:</strong> Delaware, USA</div>
-                    <div><strong>License:</strong> Gaming License Pending</div>
+                    <div>
+                      <strong>Company Name:</strong> ProStake Inc.
+                    </div>
+                    <div>
+                      <strong>Incorporated:</strong> Delaware, USA
+                    </div>
+                    <div>
+                      <strong>License:</strong> Gaming License Pending
+                    </div>
                   </div>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-4 text-primary">Legal Compliance</h3>
+                  <h3 className="font-semibold text-lg mb-4 text-primary">
+                    Legal Compliance
+                  </h3>
                   <div className="space-y-2 opacity-80">
-                    <p>ProStake Inc. is incorporated in Delaware, USA and operates in compliance with applicable gaming regulations.</p>
-                    <p>All gaming activities are conducted in accordance with state and federal gambling laws and regulations.</p>
+                    <p>
+                      ProStake Inc. is incorporated in Delaware, USA and
+                      operates in compliance with applicable gaming regulations.
+                    </p>
+                    <p>
+                      All gaming activities are conducted in accordance with
+                      state and federal laws and regulations.
+                    </p>
                   </div>
                 </div>
               </div>

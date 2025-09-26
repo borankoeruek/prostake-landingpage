@@ -1,7 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 // Animated background component
 function AnimatedBackground() {
@@ -66,14 +65,26 @@ function AnimatedBackground() {
 
 function Navbar() {
   const APP_WEB_URL = "https://app.prostake.gg";
-  const IOS_STORE_URL = process.env.NEXT_PUBLIC_IOS_APP_URL || "https://apps.apple.com/app/id000000000";
-  const ANDROID_STORE_URL = process.env.NEXT_PUBLIC_ANDROID_APP_URL || "https://play.google.com/store/apps/details?id=com.prostake.app";
+  const IOS_STORE_URL =
+    process.env.NEXT_PUBLIC_IOS_APP_URL ||
+    "https://apps.apple.com/app/id000000000";
+  const ANDROID_STORE_URL =
+    process.env.NEXT_PUBLIC_ANDROID_APP_URL ||
+    "https://play.google.com/store/apps/details?id=com.prostake.app";
 
   const handleLaunch = () => {
     if (typeof window === "undefined") return;
-    const ua = navigator.userAgent || navigator.vendor || (window as any).opera || "";
+    const ua =
+      navigator.userAgent ||
+      navigator.vendor ||
+      (window as Window & { opera?: string }).opera ||
+      "";
 
-    const isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === "MacIntel" && (navigator as any).maxTouchPoints > 1);
+    const isIOS =
+      /iPhone|iPad|iPod/i.test(ua) ||
+      (navigator.platform === "MacIntel" &&
+        (navigator as Navigator & { maxTouchPoints?: number }).maxTouchPoints >
+          1);
     const isAndroid = /Android/i.test(ua);
 
     if (isIOS) {
@@ -99,9 +110,24 @@ function Navbar() {
             <span className="text-primary">Pro</span>Stake
           </Link>
           <div className="hidden sm:flex items-center gap-4 text-sm">
-            <Link href="#features" className="opacity-80 hover:opacity-100 transition-opacity">Features</Link>
-            <Link href="/contact" className="opacity-80 hover:opacity-100 transition-opacity">Contact</Link>
-            <Link href="#cta" className="opacity-80 hover:opacity-100 transition-opacity">Get Started</Link>
+            <Link
+              href="#features"
+              className="opacity-80 hover:opacity-100 transition-opacity"
+            >
+              Features
+            </Link>
+            <Link
+              href="/contact"
+              className="opacity-80 hover:opacity-100 transition-opacity"
+            >
+              Contact
+            </Link>
+            <Link
+              href="#cta"
+              className="opacity-80 hover:opacity-100 transition-opacity"
+            >
+              Get Started
+            </Link>
           </div>
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -148,8 +174,9 @@ function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mt-6 max-w-3xl mx-auto text-xl sm:text-2xl opacity-90 leading-relaxed"
           >
-            Experience competitive gaming like never before. Support your favorite players,
-            compete in tournaments, and become part of the next generation of esports.
+            Experience competitive gaming like never before. Compete in
+            tournaments, climb leaderboards, and become part of the next
+            generation of esports.
           </motion.p>
 
           <motion.div
@@ -159,12 +186,18 @@ function Hero() {
             className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Link href="#cta" className="rounded-xl bg-primary text-onPrimary px-8 py-4 font-semibold text-lg shadow-lg hover:shadow-xl transition-all">
+              <Link
+                href="#cta"
+                className="rounded-xl bg-primary text-onPrimary px-8 py-4 font-semibold text-lg shadow-lg hover:shadow-xl transition-all"
+              >
                 Start Competing Now
               </Link>
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Link href="#features" className="rounded-xl border-2 border-primary/30 text-primary px-8 py-4 font-semibold text-lg hover:bg-primary/10 transition-all">
+              <Link
+                href="#features"
+                className="rounded-xl border-2 border-primary/30 text-primary px-8 py-4 font-semibold text-lg hover:bg-primary/10 transition-all"
+              >
                 Learn More
               </Link>
             </motion.div>
@@ -178,12 +211,24 @@ function Hero() {
             className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-8"
           >
             {[
-              { number: "$50K+", label: "Tournament Rewards", description: "Daily tournaments" },
-              { number: "10K+", label: "Active Players", description: "Growing community" },
-              { number: "24/7", label: "Live Matches", description: "Non-stop action" },
+              {
+                number: "10K+",
+                label: "Active Players",
+                description: "Growing community",
+              },
+              {
+                number: "50K+",
+                label: "Matches Played",
+                description: "Daily tournaments",
+              },
+              {
+                number: "24/7",
+                label: "Live Matches",
+                description: "Non-stop action",
+              },
             ].map((stat, index) => (
               <motion.div
-                key={stat.label}
+                key={index}
                 whileHover={{ scale: 1.05 }}
                 className="text-center"
               >
@@ -206,28 +251,30 @@ function Hero() {
         >
           {[
             {
-              title: "Support & Compete Together",
-              body: "Back your favorite players in tournaments. When they win, you share in the excitement. Support the players who inspire you.",
-              icon: "💰"
+              title: "Compete & Connect",
+              body: "Join the gaming community in tournaments. Connect with players who share your passion. Build rivalries and friendships.",
+              icon: "🎮",
             },
             {
-              title: "Competitive Gaming",
-              body: "Join tournaments, climb leaderboards, and prove your skills in your favorite games. Real competition, real excitement.",
-              icon: "🎮"
+              title: "Skill-Based Competition",
+              body: "Prove your abilities in ranked tournaments and climb leaderboards. Master your favorite games and showcase your skills.",
+              icon: "🏆",
             },
             {
               title: "Instant Results",
               body: "Get instant results and match finalization. No waiting, no disputes - just fast, transparent gaming.",
-              icon: "⚡"
+              icon: "⚡",
             },
           ].map((feature, index) => (
             <motion.div
-              key={feature.title}
+              key={index}
               whileHover={{ scale: 1.02 }}
               className="bg-card/50 backdrop-blur-sm rounded-2xl p-6 border border-outline/20 hover:border-primary/30 transition-all"
             >
               <div className="text-4xl mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-semibold mb-3 text-primary">{feature.title}</h3>
+              <h3 className="text-xl font-semibold mb-3 text-primary">
+                {feature.title}
+              </h3>
               <p className="opacity-80 leading-relaxed">{feature.body}</p>
             </motion.div>
           ))}
@@ -252,7 +299,8 @@ function Features() {
             Built for <span className="text-primary">Competitive Gaming</span>
           </h2>
           <p className="text-xl opacity-80 max-w-3xl mx-auto">
-            Experience the future of esports with our revolutionary competition platform
+            Experience the future of esports with our revolutionary competition
+            platform
           </p>
         </motion.div>
 
@@ -262,37 +310,37 @@ function Features() {
               title: "Create & Join Matches",
               body: "Set up tournaments in seconds or jump into existing matches. Support for all major competitive titles.",
               icon: "🎯",
-              color: "from-blue-500 to-cyan-500"
+              color: "from-blue-500 to-cyan-500",
             },
             {
               title: "Smart Competition System",
               body: "Compete with confidence. Dynamic rankings and transparent tournament systems ensure fair competition.",
               icon: "💎",
-              color: "from-purple-500 to-pink-500"
+              color: "from-purple-500 to-pink-500",
             },
             {
               title: "Instant Results",
               body: "Smart algorithms ensure almost instant results and match finalization. Get results instantly - no waiting, no disputes.",
               icon: "⚡",
-              color: "from-green-500 to-emerald-500"
+              color: "from-green-500 to-emerald-500",
             },
             {
               title: "Live Match Tracking",
               body: "Real-time updates and live streaming integration. Follow every moment of the action.",
               icon: "📊",
-              color: "from-orange-500 to-red-500"
+              color: "from-orange-500 to-red-500",
             },
             {
               title: "Mobile-First Design",
               body: "Seamless experience across all devices. Compete on the go, anywhere, anytime.",
               icon: "📱",
-              color: "from-indigo-500 to-purple-500"
+              color: "from-indigo-500 to-purple-500",
             },
             {
               title: "Secure & Transparent",
               body: "Algorithm-powered security with complete transparency. Your data is always protected.",
               icon: "🔒",
-              color: "from-teal-500 to-blue-500"
+              color: "from-teal-500 to-blue-500",
             },
           ].map((feature, index) => (
             <motion.div
@@ -304,7 +352,9 @@ function Features() {
               whileHover={{ scale: 1.02 }}
               className="group relative bg-card/30 backdrop-blur-sm rounded-2xl p-6 border border-outline/20 hover:border-primary/30 transition-all duration-300"
             >
-              <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300`} />
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300`}
+              />
 
               <div className="relative z-10">
                 <div className="text-5xl mb-4">{feature.icon}</div>
@@ -329,41 +379,43 @@ function Features() {
         >
           <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-3xl p-8 border border-primary/20">
             <div className="text-center mb-8">
-              <h3 className="text-3xl font-bold mb-4">How Competition Works</h3>
+              <h3 className="text-3xl font-bold mb-4">Why Choose ProStake</h3>
               <p className="text-lg opacity-80 max-w-2xl mx-auto">
-                Our revolutionary competition system makes competitive gaming accessible to everyone
+                Experience the most advanced competitive gaming platform
+                designed for serious players
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
                 {
-                  step: "01",
-                  title: "Choose Your Player",
-                  description: "Browse active tournaments and select players you believe will dominate"
+                  title: "Fair Competition",
+                  description:
+                    "Transparent matchmaking and ranking systems ensure everyone competes on equal footing",
                 },
                 {
-                  step: "02",
-                  title: "Choose Your Support",
-                  description: "Support their success with transparent rankings and clear competition rules"
+                  title: "Community Driven",
+                  description:
+                    "Built by gamers for gamers, with features designed around what the community needs",
                 },
                 {
-                  step: "03",
-                  title: "Share The Victory",
-                  description: "When your backed player wins, share in the celebration and tournament success"
+                  title: "Always Evolving",
+                  description:
+                    "Regular updates and new game modes keep the competition fresh and exciting",
                 },
-              ].map((step, index) => (
+              ].map((feature, index) => (
                 <motion.div
-                  key={step.step}
+                  key={feature.title}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.2 }}
                   className="text-center p-6 rounded-2xl bg-background/50"
                 >
-                  <div className="text-4xl font-bold text-primary mb-4">{step.step}</div>
-                  <h4 className="text-lg font-semibold mb-3">{step.title}</h4>
-                  <p className="opacity-70">{step.description}</p>
+                  <h4 className="text-lg font-semibold mb-3">
+                    {feature.title}
+                  </h4>
+                  <p className="opacity-70">{feature.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -424,7 +476,8 @@ function CTA() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-xl opacity-90 max-w-2xl mx-auto mb-8 leading-relaxed"
             >
-              Join thousands of players already competing and winning. Be part of the future of competitive gaming.
+              Join thousands of players already competing and winning. Be part
+              of the future of competitive gaming.
             </motion.p>
 
             <motion.div
@@ -434,7 +487,10 @@ function CTA() {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="flex flex-col sm:flex-row items-center justify-center gap-4"
             >
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 <a
                   href="#"
                   className="bg-onPrimary text-primary px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all flex items-center gap-2"
@@ -443,7 +499,10 @@ function CTA() {
                   Download for iOS (Beta)
                 </a>
               </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 <a
                   href="#"
                   className="border-2 border-onPrimary/40 text-onPrimary px-8 py-4 rounded-xl font-semibold text-lg hover:bg-onPrimary/10 transition-all flex items-center gap-2"
@@ -487,11 +546,14 @@ function Footer() {
               <span className="text-primary">Pro</span>Stake
             </Link>
             <p className="mt-3 text-sm opacity-80 max-w-md">
-              The next generation of competitive gaming. Support your favorite players and share in their victories.
+              The next generation of competitive gaming. Join tournaments and
+              prove your skills against the best.
             </p>
             <div className="mt-4 flex items-center gap-4">
               <div className="text-xs opacity-60">🎮 Built for gamers</div>
-              <div className="text-xs opacity-60">💎 Powered by smart algorithms</div>
+              <div className="text-xs opacity-60">
+                💎 Powered by smart algorithms
+              </div>
             </div>
           </div>
 
@@ -499,9 +561,24 @@ function Footer() {
           <div>
             <h4 className="font-semibold text-sm mb-3">Platform</h4>
             <div className="space-y-2 text-sm">
-              <Link href="#features" className="block opacity-80 hover:opacity-100 transition-opacity">Features</Link>
-              <Link href="#cta" className="block opacity-80 hover:opacity-100 transition-opacity">Get Started</Link>
-              <Link href="/contact" className="block opacity-80 hover:opacity-100 transition-opacity">Contact</Link>
+              <Link
+                href="#features"
+                className="block opacity-80 hover:opacity-100 transition-opacity"
+              >
+                Features
+              </Link>
+              <Link
+                href="#cta"
+                className="block opacity-80 hover:opacity-100 transition-opacity"
+              >
+                Get Started
+              </Link>
+              <Link
+                href="/contact"
+                className="block opacity-80 hover:opacity-100 transition-opacity"
+              >
+                Contact
+              </Link>
             </div>
           </div>
 
@@ -509,9 +586,24 @@ function Footer() {
           <div>
             <h4 className="font-semibold text-sm mb-3">Support</h4>
             <div className="space-y-2 text-sm">
-              <Link href="/contact" className="block opacity-80 hover:opacity-100 transition-opacity">Help Center</Link>
-              <Link href="/contact" className="block opacity-80 hover:opacity-100 transition-opacity">Privacy Policy</Link>
-              <Link href="/contact" className="block opacity-80 hover:opacity-100 transition-opacity">Terms of Service</Link>
+              <Link
+                href="/contact"
+                className="block opacity-80 hover:opacity-100 transition-opacity"
+              >
+                Help Center
+              </Link>
+              <Link
+                href="/contact"
+                className="block opacity-80 hover:opacity-100 transition-opacity"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                href="/contact"
+                className="block opacity-80 hover:opacity-100 transition-opacity"
+              >
+                Terms of Service
+              </Link>
             </div>
           </div>
         </motion.div>

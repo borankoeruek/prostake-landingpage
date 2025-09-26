@@ -164,7 +164,7 @@ function Hero() {
               <span className="text-primary">Pro</span>
               <span className="text-foreground">Gaming</span>
               <br />
-              <span className="text-primary">Revolutionized</span>
+              <span className="text-primary">Made Social</span>
             </motion.h1>
           </motion.div>
 
@@ -174,9 +174,9 @@ function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mt-6 max-w-3xl mx-auto text-xl sm:text-2xl opacity-90 leading-relaxed"
           >
-            Experience competitive gaming like never before. Compete in
-            tournaments, climb leaderboards, and become part of the next
-            generation of esports.
+            Experience gaming like never before. Connect with friends, play your
+            favorite games together, and become part of the next generation of
+            social gaming.
           </motion.p>
 
           <motion.div
@@ -190,7 +190,7 @@ function Hero() {
                 href="#cta"
                 className="rounded-xl bg-primary text-onPrimary px-8 py-4 font-semibold text-lg shadow-lg hover:shadow-xl transition-all"
               >
-                Start Competing Now
+                Start Gaming Now
               </Link>
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -218,13 +218,13 @@ function Hero() {
               },
               {
                 number: "50K+",
-                label: "Matches Played",
-                description: "Daily tournaments",
+                label: "Games Played",
+                description: "Daily fun",
               },
               {
                 number: "24/7",
-                label: "Live Matches",
-                description: "Non-stop action",
+                label: "Live Gaming",
+                description: "Always available",
               },
             ].map((stat, index) => (
               <motion.div
@@ -251,18 +251,18 @@ function Hero() {
         >
           {[
             {
-              title: "Compete & Connect",
-              body: "Join the gaming community in tournaments. Connect with players who share your passion. Build rivalries and friendships.",
+              title: "Play & Connect",
+              body: "Join the gaming community and play with friends. Connect with players who share your passion. Build lasting friendships through gaming.",
               icon: "🎮",
             },
             {
-              title: "Skill-Based Competition",
-              body: "Prove your abilities in ranked tournaments and climb leaderboards. Master your favorite games and showcase your skills.",
-              icon: "🏆",
+              title: "Learn & Improve",
+              body: "Discover new games and improve your skills. Learn from others and share tips. Gaming is about growth and having fun together.",
+              icon: "📚",
             },
             {
-              title: "Instant Results",
-              body: "Get instant results and match finalization. No waiting, no disputes - just fast, transparent gaming.",
+              title: "Seamless Experience",
+              body: "Smooth gameplay and easy connections. No waiting, no hassle - just pure gaming enjoyment with your community.",
               icon: "⚡",
             },
           ].map((feature, index) => (
@@ -296,10 +296,10 @@ function Features() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6">
-            Built for <span className="text-primary">Competitive Gaming</span>
+            Built for <span className="text-primary">Social Gaming</span>
           </h2>
           <p className="text-xl opacity-80 max-w-3xl mx-auto">
-            Experience the future of esports with our revolutionary competition
+            Experience the future of gaming with our revolutionary social
             platform
           </p>
         </motion.div>
@@ -307,38 +307,38 @@ function Features() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[
             {
-              title: "Create & Join Matches",
-              body: "Set up tournaments in seconds or jump into existing matches. Support for all major competitive titles.",
+              title: "Create & Join Games",
+              body: "Set up gaming sessions in seconds or join existing games. Support for all your favorite gaming titles.",
               icon: "🎯",
               color: "from-blue-500 to-cyan-500",
             },
             {
-              title: "Smart Competition System",
-              body: "Compete with confidence. Dynamic rankings and transparent tournament systems ensure fair competition.",
+              title: "Smart Social System",
+              body: "Connect with confidence. Smart matchmaking helps you find the perfect gaming partners and friends.",
               icon: "💎",
               color: "from-purple-500 to-pink-500",
             },
             {
-              title: "Instant Results",
-              body: "Smart algorithms ensure almost instant results and match finalization. Get results instantly - no waiting, no disputes.",
+              title: "Seamless Connections",
+              body: "Smooth setup and instant connections. Get gaming with friends without any hassle or waiting.",
               icon: "⚡",
               color: "from-green-500 to-emerald-500",
             },
             {
-              title: "Live Match Tracking",
-              body: "Real-time updates and live streaming integration. Follow every moment of the action.",
+              title: "Live Social Gaming",
+              body: "Real-time chat and voice integration. Share every moment of the fun with your gaming community.",
               icon: "📊",
               color: "from-orange-500 to-red-500",
             },
             {
               title: "Mobile-First Design",
-              body: "Seamless experience across all devices. Compete on the go, anywhere, anytime.",
+              body: "Seamless experience across all devices. Game on the go, anywhere, anytime with friends.",
               icon: "📱",
               color: "from-indigo-500 to-purple-500",
             },
             {
-              title: "Secure & Transparent",
-              body: "Algorithm-powered security with complete transparency. Your data is always protected.",
+              title: "Secure & Fun",
+              body: "Privacy-focused design with complete security. Your gaming experience is always protected.",
               icon: "🔒",
               color: "from-teal-500 to-blue-500",
             },
@@ -381,17 +381,17 @@ function Features() {
             <div className="text-center mb-8">
               <h3 className="text-3xl font-bold mb-4">Why Choose ProStake</h3>
               <p className="text-lg opacity-80 max-w-2xl mx-auto">
-                Experience the most advanced competitive gaming platform
-                designed for serious players
+                Experience the most advanced social gaming platform designed for
+                fun and connection
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
                 {
-                  title: "Fair Competition",
+                  title: "Inclusive Gaming",
                   description:
-                    "Transparent matchmaking and ranking systems ensure everyone competes on equal footing",
+                    "Friendly environment where everyone can join and have fun, regardless of skill level",
                 },
                 {
                   title: "Community Driven",
@@ -401,7 +401,7 @@ function Features() {
                 {
                   title: "Always Evolving",
                   description:
-                    "Regular updates and new game modes keep the competition fresh and exciting",
+                    "Regular updates and new social features keep the gaming experience fresh and exciting",
                 },
               ].map((feature, index) => (
                 <motion.div
@@ -466,7 +466,7 @@ function CTA() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-4xl sm:text-5xl font-bold tracking-tight mb-6"
             >
-              Ready to Revolutionize Your Gaming?
+              Ready to Transform Your Gaming Experience?
             </motion.h3>
 
             <motion.p
@@ -476,8 +476,8 @@ function CTA() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-xl opacity-90 max-w-2xl mx-auto mb-8 leading-relaxed"
             >
-              Join thousands of players already competing and winning. Be part
-              of the future of competitive gaming.
+              Join thousands of players already connecting and having fun. Be
+              part of the future of social gaming.
             </motion.p>
 
             <motion.div
@@ -546,8 +546,8 @@ function Footer() {
               <span className="text-primary">Pro</span>Stake
             </Link>
             <p className="mt-3 text-sm opacity-80 max-w-md">
-              The next generation of competitive gaming. Join tournaments and
-              prove your skills against the best.
+              The next generation of social gaming. Connect with friends and
+              enjoy gaming together.
             </p>
             <div className="mt-4 flex items-center gap-4">
               <div className="text-xs opacity-60">🎮 Built for gamers</div>

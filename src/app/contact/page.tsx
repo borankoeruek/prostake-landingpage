@@ -126,8 +126,8 @@ function Footer() {
               <span className="text-primary">Pro</span>Stake
             </Link>
             <p className="mt-3 text-sm opacity-80 max-w-md">
-              The next generation of competitive gaming. Join tournaments and
-              prove your skills against the best.
+              The next generation of social gaming. Connect with friends and
+              enjoy gaming together.
             </p>
             <div className="mt-4 flex items-center gap-4">
               <div className="text-xs opacity-60">🎮 Built for gamers</div>

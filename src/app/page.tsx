@@ -129,6 +129,12 @@ function Navbar() {
               Contact
             </Link>
             <Link
+              href="/privacy"
+              className="opacity-80 hover:opacity-100 transition-opacity"
+            >
+              Privacy
+            </Link>
+            <Link
               href="#cta"
               className="opacity-80 hover:opacity-100 transition-opacity"
             >
@@ -599,7 +605,7 @@ function Footer() {
                 Help Center
               </Link>
               <Link
-                href="/contact"
+                href="/privacy"
                 className="block opacity-80 hover:opacity-100 transition-opacity"
               >
                 Privacy Policy

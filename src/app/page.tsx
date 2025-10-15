@@ -117,6 +117,12 @@ function Navbar() {
               Features
             </Link>
             <Link
+              href="/faq"
+              className="opacity-80 hover:opacity-100 transition-opacity"
+            >
+              FAQ
+            </Link>
+            <Link
               href="/contact"
               className="opacity-80 hover:opacity-100 transition-opacity"
             >

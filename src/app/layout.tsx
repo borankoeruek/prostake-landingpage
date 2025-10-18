@@ -13,8 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ProStake — Bet Smarter on Every Match",
-  description: "Create, accept, and stake on matches with transparent pools and instant settlement.",
+  title: "ProStake — Be Smarter on Every Match",
+  description:
+    "Create, accept, and stake on matches with transparent pools and instant settlement.",
   metadataBase: new URL("https://prostake.app"),
   keywords: [
     "ProStake",
@@ -24,15 +25,17 @@ export const metadata: Metadata = {
     "pool betting",
   ],
   openGraph: {
-    title: "ProStake — Bet Smarter on Every Match",
-    description: "Create, accept, and stake on matches with transparent pools and instant settlement.",
+    title: "ProStake — Be Smarter on Every Match",
+    description:
+      "Create, accept, and stake on matches with transparent pools and instant settlement.",
     type: "website",
     url: "https://prostake.app",
   },
   twitter: {
     card: "summary_large_image",
-    title: "ProStake — Bet Smarter on Every Match",
-    description: "Create, accept, and stake on matches with transparent pools and instant settlement.",
+    title: "ProStake — Be Smarter on Every Match",
+    description:
+      "Create, accept, and stake on matches with transparent pools and instant settlement.",
   },
 };
 
@@ -43,7 +46,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground min-h-dvh`}> 
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground min-h-dvh`}
+      >
         <div className="relative min-h-dvh overflow-x-clip">
           <div className="app-gradient-bg" />
           {children}

@@ -655,14 +655,38 @@ function Footer() {
 }
 
 export default function Home() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "ProStake",
+    description: "Skill-based wagering platform for competitive gaming",
+    url: "https://prostake.gg",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://prostake.gg/search?q={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "ProStake Inc.",
+      url: "https://prostake.gg",
+    },
+  };
+
   return (
-    <div className="relative min-h-screen overflow-x-hidden">
-      <AnimatedBackground />
-      <Navbar />
-      <Hero />
-      <Features />
-      <CTA />
-      <Footer />
-    </div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="relative min-h-screen overflow-x-hidden">
+        <AnimatedBackground />
+        <Navbar />
+        <Hero />
+        <Features />
+        <CTA />
+        <Footer />
+      </div>
+    </>
   );
 }

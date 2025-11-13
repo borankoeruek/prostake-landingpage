@@ -13,29 +13,67 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ProStake — Be Smarter on Every Match",
+  title: "ProStake — Skill-Based Wagering Platform",
   description:
-    "Create, accept, and stake on matches with transparent pools and instant settlement.",
-  metadataBase: new URL("https://prostake.app"),
+    "Experience competitive gaming like never before. Stake on your favorite players, compete for real money, and become part of the next generation of esports.",
+  metadataBase: new URL("https://prostake.gg"),
   keywords: [
     "ProStake",
+    "skill-based wagering",
     "esports betting",
-    "staking",
-    "match betting",
-    "pool betting",
+    "gaming staking",
+    "competitive gaming",
+    "player staking",
+    "esports platform",
   ],
+  authors: [{ name: "ProStake Team" }],
+  creator: "ProStake",
+  publisher: "ProStake Inc.",
   openGraph: {
-    title: "ProStake — Be Smarter on Every Match",
+    title: "ProStake — Skill-Based Wagering Platform",
     description:
-      "Create, accept, and stake on matches with transparent pools and instant settlement.",
+      "Experience competitive gaming like never before. Stake on your favorite players, compete for real money, and become part of the next generation of esports.",
+    url: "https://prostake.gg",
+    siteName: "ProStake",
+    images: [
+      {
+        url: "https://prostake.gg/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "ProStake - Skill-Based Wagering Platform",
+      },
+    ],
+    locale: "en_US",
     type: "website",
-    url: "https://prostake.app",
   },
   twitter: {
     card: "summary_large_image",
-    title: "ProStake — Be Smarter on Every Match",
+    title: "ProStake — Skill-Based Wagering Platform",
     description:
-      "Create, accept, and stake on matches with transparent pools and instant settlement.",
+      "Experience competitive gaming like never before. Stake on your favorite players, compete for real money, and become part of the next generation of esports.",
+    images: ["https://prostake.gg/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "your-google-site-verification-code",
+  },
+  icons: {
+    icon: "/prostakeAppLogo.png",
+    shortcut: "/prostakeAppLogo.png",
+    apple: "/prostakeAppLogo.png",
+  },
+  other: {
+    "msapplication-TileImage": "/prostakeAppLogo.png",
   },
 };
 

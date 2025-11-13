@@ -34,27 +34,37 @@ function AnimatedBackground() {
       />
 
       {/* Floating particles */}
-      {[...Array(15)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-2 h-2 bg-primary/20 rounded-full"
-          animate={{
-            y: [0, -100, 0],
-            x: [0, Math.random() * 100 - 50, 0],
-            opacity: [0, 1, 0],
-          }}
-          transition={{
-            duration: 8 + Math.random() * 4,
-            repeat: Infinity,
-            delay: Math.random() * 5,
-            ease: "easeInOut",
-          }}
-          style={{
-            left: `${20 + Math.random() * 60}%`,
-            top: `${20 + Math.random() * 60}%`,
-          }}
-        />
-      ))}
+      {[...Array(15)].map((_, i) => {
+        // Generate deterministic positions based on index for SSR consistency
+        const seed = i * 0.618033988749895; // Golden ratio for good distribution
+        const leftPos = 20 + ((seed * 9301) % 60); // Pseudo-random but deterministic
+        const topPos = 20 + ((seed * 49297) % 60);
+        const delay = (seed * 5) % 5;
+        const duration = 8 + ((seed * 4) % 4);
+        const xOffset = ((seed * 100) % 100) - 50;
+
+        return (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 bg-primary/20 rounded-full"
+            animate={{
+              y: [0, -100, 0],
+              x: [0, xOffset, 0],
+              opacity: [0, 1, 0],
+            }}
+            transition={{
+              duration: duration,
+              repeat: Infinity,
+              delay: delay,
+              ease: "easeInOut",
+            }}
+            style={{
+              left: `${leftPos}%`,
+              top: `${topPos}%`,
+            }}
+          />
+        );
+      })}
 
       {/* Grid overlay */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.1)_1px,transparent_0)] bg-[length:50px_50px] opacity-20" />
@@ -126,8 +136,8 @@ function Footer() {
               <span className="text-primary">Pro</span>Stake
             </Link>
             <p className="mt-3 text-sm opacity-80 max-w-md">
-              The next generation of social gaming. Connect with friends and
-              enjoy gaming together.
+              The next generation of competitive gaming. Stake on your favorite
+              players and share in their victories.
             </p>
             <div className="mt-4 flex items-center gap-4">
               <div className="text-xs opacity-60">🎮 Built for gamers</div>
@@ -211,7 +221,7 @@ function Footer() {
             © {new Date().getFullYear()} ProStake Inc. All rights reserved.
           </div>
           <div className="mt-2 sm:mt-0 opacity-80">
-            Made with ❤️ for the gaming community
+            Built for competitive excellence
           </div>
         </motion.div>
       </div>
@@ -239,8 +249,8 @@ export default function Contact() {
                 Contact <span className="text-primary">Us</span>
               </h1>
               <p className="text-xl opacity-80 max-w-3xl mx-auto">
-                Get in touch with the ProStake team. We&apos;re here to help you
-                with any questions about our platform.
+                Connect with our wagering specialists. Get answers to your
+                questions about skill-based competition and platform features.
               </p>
             </motion.div>
 

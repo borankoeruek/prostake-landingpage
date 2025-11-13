@@ -48,6 +48,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground min-h-dvh`}
+        suppressHydrationWarning={true}
       >
         <div className="relative min-h-dvh overflow-x-clip">
           <div className="app-gradient-bg" />

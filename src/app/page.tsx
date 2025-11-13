@@ -35,27 +35,37 @@ function AnimatedBackground() {
       />
 
       {/* Floating particles */}
-      {[...Array(20)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-2 h-2 bg-primary/20 rounded-full"
-          animate={{
-            y: [0, -100, 0],
-            x: [0, Math.random() * 100 - 50, 0],
-            opacity: [0, 1, 0],
-          }}
-          transition={{
-            duration: 8 + Math.random() * 4,
-            repeat: Infinity,
-            delay: Math.random() * 5,
-            ease: "easeInOut",
-          }}
-          style={{
-            left: `${20 + Math.random() * 60}%`,
-            top: `${20 + Math.random() * 60}%`,
-          }}
-        />
-      ))}
+      {[...Array(20)].map((_, i) => {
+        // Generate deterministic positions based on index for SSR consistency
+        const seed = i * 0.618033988749895; // Golden ratio for good distribution
+        const leftPos = 20 + ((seed * 9301) % 60); // Pseudo-random but deterministic
+        const topPos = 20 + ((seed * 49297) % 60);
+        const delay = (seed * 5) % 5;
+        const duration = 8 + ((seed * 4) % 4);
+        const xOffset = ((seed * 100) % 100) - 50;
+
+        return (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 bg-primary/20 rounded-full"
+            animate={{
+              y: [0, -100, 0],
+              x: [0, xOffset, 0],
+              opacity: [0, 1, 0],
+            }}
+            transition={{
+              duration: duration,
+              repeat: Infinity,
+              delay: delay,
+              ease: "easeInOut",
+            }}
+            style={{
+              left: `${leftPos}%`,
+              top: `${topPos}%`,
+            }}
+          />
+        );
+      })}
 
       {/* Grid overlay */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.1)_1px,transparent_0)] bg-[length:50px_50px] opacity-20" />
@@ -176,7 +186,7 @@ function Hero() {
               <span className="text-primary">Pro</span>
               <span className="text-foreground">Gaming</span>
               <br />
-              <span className="text-primary">Made Social</span>
+              <span className="text-primary">Revolutionized</span>
             </motion.h1>
           </motion.div>
 
@@ -186,9 +196,9 @@ function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mt-6 max-w-3xl mx-auto text-xl sm:text-2xl opacity-90 leading-relaxed"
           >
-            Experience gaming like never before. Connect with friends, play your
-            favorite games together, and become part of the next generation of
-            social gaming.
+            Experience competitive gaming like never before. Stake on your
+            favorite players, compete for real money, and become part of the
+            next generation of esports.
           </motion.p>
 
           <motion.div
@@ -202,7 +212,7 @@ function Hero() {
                 href="#cta"
                 className="rounded-xl bg-primary text-onPrimary px-8 py-4 font-semibold text-lg shadow-lg hover:shadow-xl transition-all"
               >
-                Start Gaming Now
+                Start Staking Now
               </Link>
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -224,19 +234,19 @@ function Hero() {
           >
             {[
               {
+                number: "$50K+",
+                label: "Prize Pools",
+                description: "Daily tournaments",
+              },
+              {
                 number: "10K+",
                 label: "Active Players",
                 description: "Growing community",
               },
               {
-                number: "50K+",
-                label: "Games Played",
-                description: "Daily fun",
-              },
-              {
                 number: "24/7",
-                label: "Live Gaming",
-                description: "Always available",
+                label: "Live Matches",
+                description: "Non-stop action",
               },
             ].map((stat, index) => (
               <motion.div
@@ -263,18 +273,18 @@ function Hero() {
         >
           {[
             {
-              title: "Play & Connect",
-              body: "Join the gaming community and play with friends. Connect with players who share your passion. Build lasting friendships through gaming.",
+              title: "Stake & Win Together",
+              body: "Back your favorite players with real stakes. When they win, you win too. Share in the prize pool based on your contribution.",
+              icon: "💰",
+            },
+            {
+              title: "Competitive Gaming",
+              body: "Join tournaments, climb leaderboards, and prove your skills in your favorite games. Real competition, real rewards.",
               icon: "🎮",
             },
             {
-              title: "Learn & Improve",
-              body: "Discover new games and improve your skills. Learn from others and share tips. Gaming is about growth and having fun together.",
-              icon: "📚",
-            },
-            {
-              title: "Seamless Experience",
-              body: "Smooth gameplay and easy connections. No waiting, no hassle - just pure gaming enjoyment with your community.",
+              title: "Automatic Settlements",
+              body: "Automatic settlements ensure almost instant payouts. No waiting, no disputes - just fast, transparent gaming.",
               icon: "⚡",
             },
           ].map((feature, index) => (
@@ -308,10 +318,10 @@ function Features() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6">
-            Built for <span className="text-primary">Social Gaming</span>
+            Built for <span className="text-primary">Competitive Gaming</span>
           </h2>
           <p className="text-xl opacity-80 max-w-3xl mx-auto">
-            Experience the future of gaming with our revolutionary social
+            Experience the future of esports with our revolutionary staking
             platform
           </p>
         </motion.div>
@@ -319,38 +329,38 @@ function Features() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[
             {
-              title: "Create & Join Games",
-              body: "Set up gaming sessions in seconds or join existing games. Support for all your favorite gaming titles.",
+              title: "Create & Join Matches",
+              body: "Set up tournaments in seconds or jump into existing matches. Support for all major competitive titles.",
               icon: "🎯",
               color: "from-blue-500 to-cyan-500",
             },
             {
-              title: "Smart Social System",
-              body: "Connect with confidence. Smart matchmaking helps you find the perfect gaming partners and friends.",
+              title: "Smart Staking System",
+              body: "Stake on players with confidence. Dynamic multipliers and transparent pool sharing ensure fair rewards.",
               icon: "💎",
               color: "from-purple-500 to-pink-500",
             },
             {
-              title: "Seamless Connections",
-              body: "Smooth setup and instant connections. Get gaming with friends without any hassle or waiting.",
+              title: "Instant Settlements",
+              body: "Smart algorithms ensure almost instant payouts and match finalization. Winners get paid instantly - no waiting, no disputes.",
               icon: "⚡",
               color: "from-green-500 to-emerald-500",
             },
             {
-              title: "Live Social Gaming",
-              body: "Real-time chat and voice integration. Share every moment of the fun with your gaming community.",
+              title: "Live Match Tracking",
+              body: "Real-time updates and live streaming integration. Follow every moment of the action.",
               icon: "📊",
               color: "from-orange-500 to-red-500",
             },
             {
               title: "Mobile-First Design",
-              body: "Seamless experience across all devices. Game on the go, anywhere, anytime with friends.",
+              body: "Seamless experience across all devices. Stake on the go, anywhere, anytime.",
               icon: "📱",
               color: "from-indigo-500 to-purple-500",
             },
             {
-              title: "Secure & Fun",
-              body: "Privacy-focused design with complete security. Your gaming experience is always protected.",
+              title: "Secure & Transparent",
+              body: "Algorithm-powered security with complete transparency. Your stakes are always protected.",
               icon: "🔒",
               color: "from-teal-500 to-blue-500",
             },
@@ -391,43 +401,47 @@ function Features() {
         >
           <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-3xl p-8 border border-primary/20">
             <div className="text-center mb-8">
-              <h3 className="text-3xl font-bold mb-4">Why Choose ProStake</h3>
+              <h3 className="text-3xl font-bold mb-4">How Staking Works</h3>
               <p className="text-lg opacity-80 max-w-2xl mx-auto">
-                Experience the most advanced social gaming platform designed for
-                fun and connection
+                Our revolutionary staking system makes competitive gaming
+                accessible to everyone
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
                 {
-                  title: "Inclusive Gaming",
+                  step: "01",
+                  title: "Choose Your Player",
                   description:
-                    "Friendly environment where everyone can join and have fun, regardless of skill level",
+                    "Browse active tournaments and select players you believe will dominate",
                 },
                 {
-                  title: "Community Driven",
+                  step: "02",
+                  title: "Place Your Stake",
                   description:
-                    "Built by gamers for gamers, with features designed around what the community needs",
+                    "Invest in their success with transparent multipliers and clear risk/reward ratios",
                 },
                 {
-                  title: "Always Evolving",
+                  step: "03",
+                  title: "Share The Victory",
                   description:
-                    "Regular updates and new social features keep the gaming experience fresh and exciting",
+                    "When your backed player wins, you receive your proportional share of the prize pool",
                 },
-              ].map((feature, index) => (
+              ].map((step, index) => (
                 <motion.div
-                  key={feature.title}
+                  key={step.step}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.2 }}
                   className="text-center p-6 rounded-2xl bg-background/50"
                 >
-                  <h4 className="text-lg font-semibold mb-3">
-                    {feature.title}
-                  </h4>
-                  <p className="opacity-70">{feature.description}</p>
+                  <div className="text-4xl font-bold text-primary mb-4">
+                    {step.step}
+                  </div>
+                  <h4 className="text-lg font-semibold mb-3">{step.title}</h4>
+                  <p className="opacity-70">{step.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -478,7 +492,7 @@ function CTA() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-4xl sm:text-5xl font-bold tracking-tight mb-6"
             >
-              Ready to Transform Your Gaming Experience?
+              Ready to Revolutionize Your Gaming?
             </motion.h3>
 
             <motion.p
@@ -488,8 +502,8 @@ function CTA() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-xl opacity-90 max-w-2xl mx-auto mb-8 leading-relaxed"
             >
-              Join thousands of players already connecting and having fun. Be
-              part of the future of social gaming.
+              Join thousands of players already staking and winning. Be part of
+              the future of competitive gaming.
             </motion.p>
 
             <motion.div
@@ -532,7 +546,8 @@ function CTA() {
               transition={{ duration: 0.6, delay: 0.7 }}
               className="mt-8 text-sm opacity-80"
             >
-              🚀 Early access • ⚡ Instant setup • 💎 Premium features included
+              🚀 Elite access • ⚡ Instant wagering • 💎 Institutional security
+              included
             </motion.div>
           </motion.div>
         </motion.div>
@@ -558,8 +573,8 @@ function Footer() {
               <span className="text-primary">Pro</span>Stake
             </Link>
             <p className="mt-3 text-sm opacity-80 max-w-md">
-              The next generation of social gaming. Connect with friends and
-              enjoy gaming together.
+              The next generation of competitive gaming. Stake on your favorite
+              players and share in their victories.
             </p>
             <div className="mt-4 flex items-center gap-4">
               <div className="text-xs opacity-60">🎮 Built for gamers</div>
@@ -631,7 +646,7 @@ function Footer() {
             © {new Date().getFullYear()} ProStake Inc. All rights reserved.
           </div>
           <div className="mt-2 sm:mt-0 opacity-80">
-            Made with ❤️ for the gaming community
+            Built for competitive excellence
           </div>
         </motion.div>
       </div>

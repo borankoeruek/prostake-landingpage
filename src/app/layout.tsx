@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ProStake — Skill-Based Wagering Platform",
+  title: "ProStake - Skill-Based Wagering Platform",
   description:
     "Experience competitive gaming like never before. Stake on your favorite players, compete for real money, and become part of the next generation of esports.",
   metadataBase: new URL("https://prostake.gg"),
@@ -25,12 +25,15 @@ export const metadata: Metadata = {
     "competitive gaming",
     "player staking",
     "esports platform",
+    "cmg",
+    "checkmate gaming",
+    "console kings",
   ],
   authors: [{ name: "ProStake Team" }],
   creator: "ProStake",
   publisher: "ProStake Inc.",
   openGraph: {
-    title: "ProStake — Skill-Based Wagering Platform",
+    title: "ProStake - Skill-Based Wagering Platform",
     description:
       "Experience competitive gaming like never before. Stake on your favorite players, compete for real money, and become part of the next generation of esports.",
     url: "https://prostake.gg",
@@ -48,7 +51,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ProStake — Skill-Based Wagering Platform",
+    title: "ProStake - Skill-Based Wagering Platform",
     description:
       "Experience competitive gaming like never before. Stake on your favorite players, compete for real money, and become part of the next generation of esports.",
     images: ["https://prostake.gg/og-image.jpg"],

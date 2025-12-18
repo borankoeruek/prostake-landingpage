@@ -124,7 +124,7 @@ function Hero({ shouldAnimate }: { shouldAnimate: boolean }) {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Free Entry and Side Bets directly integrated on the App.
+              Free Entry and Stake directly integrated on the App.
             </motion.p>
             <motion.div
               className="flex gap-3 flex-wrap justify-center sm:justify-start"
@@ -176,7 +176,7 @@ function Hero({ shouldAnimate }: { shouldAnimate: boolean }) {
             Play Black Ops 7 win cash.
           </h1>
           <p className="text-xl text-foreground/80 mb-8 max-w-2xl">
-            Free Entry and Side Bets directly integrated on the App.
+            Free Entry and Stake directly integrated on the App.
           </p>
           <div className="flex gap-3 flex-wrap justify-center sm:justify-start">
             <Link

@@ -5,16 +5,16 @@ import { useState, useEffect } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
 const stats = [
-  { value: "$50K+", label: "daily prize pools" },
+  { value: "$100K+", label: "daily stakes" },
   { value: "24/7", label: "live match coverage" },
   { value: "$1 Mio", label: "in Tournaments 2026" },
 ];
 
 const features = [
   {
-    title: "Lowest Fees in the Market",
-    body: "Only 5% fees on matches, deposits, and withdrawals - the lowest rates available.",
-    icon: "💰",
+    title: "Available on the App Store",
+    body: "Download the app for free and start playing today.",
+    icon: "📱",
   },
   {
     title: "Free Entry Tournaments",
@@ -124,7 +124,7 @@ function Hero({ shouldAnimate }: { shouldAnimate: boolean }) {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Free Entry and Stake directly integrated on the App.
+              Play & Stake directly on the App.
             </motion.p>
             <motion.div
               className="flex gap-3 flex-wrap justify-center sm:justify-start"
@@ -176,7 +176,7 @@ function Hero({ shouldAnimate }: { shouldAnimate: boolean }) {
             Play Black Ops 7 win cash.
           </h1>
           <p className="text-xl text-foreground/80 mb-8 max-w-2xl">
-            Free Entry and Stake directly integrated on the App.
+            Play & Stake directly on the App.
           </p>
           <div className="flex gap-3 flex-wrap justify-center sm:justify-start">
             <Link
@@ -588,7 +588,7 @@ function CTA({ shouldAnimate }: { shouldAnimate: boolean }) {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            Ready to guard your stake and win?
+            Join 50,000+ players.
           </motion.h2>
           <motion.p
             className="mt-3 text-lg opacity-80"

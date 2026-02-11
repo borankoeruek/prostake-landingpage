@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "clsx": "^2.1.1",
+    "posthog-js": "^1.200.0",
     "framer-motion": "^12.23.19",
     "next": "15.5.4",
+    "posthog-js": "^1.336.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "tailwind-merge": "^3.3.1"

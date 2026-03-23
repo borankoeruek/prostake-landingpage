@@ -14,18 +14,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ProStake - Skill-Based Wagering Platform",
+  title: "ProStake - Esports Staking Platform",
   description:
-    "Experience competitive gaming like never before. Stake on your favorite players, compete for real money, and become part of the next generation of esports.",
+    "Back players in skill-based matches—not the house. Staking means supporting competitors and sharing in the outcome; ProStake is built for competitive gaming, not traditional sportsbook betting.",
   metadataBase: new URL("https://prostake.gg"),
   keywords: [
     "ProStake",
-    "skill-based wagering",
-    "esports betting",
-    "gaming staking",
+    "esports staking",
+    "skill-based staking",
     "competitive gaming",
     "player staking",
     "esports platform",
+    "stake on players",
     "cmg",
     "checkmate gaming",
     "console kings",
@@ -34,9 +34,9 @@ export const metadata: Metadata = {
   creator: "ProStake",
   publisher: "ProStake Inc.",
   openGraph: {
-    title: "ProStake - Skill-Based Wagering Platform",
+    title: "ProStake - Esports Staking Platform",
     description:
-      "Experience competitive gaming like never before. Stake on your favorite players, compete for real money, and become part of the next generation of esports.",
+      "Back players in skill-based matches—not the house. Staking means supporting competitors and sharing in the outcome; built for competitive gaming, not sportsbook betting.",
     url: "https://prostake.gg",
     siteName: "ProStake",
     images: [
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
         url: "https://prostake.gg/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "ProStake - Skill-Based Wagering Platform",
+        alt: "ProStake - Esports Staking Platform",
       },
     ],
     locale: "en_US",
@@ -52,9 +52,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ProStake - Skill-Based Wagering Platform",
+    title: "ProStake - Esports Staking Platform",
     description:
-      "Experience competitive gaming like never before. Stake on your favorite players, compete for real money, and become part of the next generation of esports.",
+      "Back players in skill-based matches—not the house. Staking supports competitors; not traditional sportsbook betting.",
     images: ["https://prostake.gg/og-image.jpg"],
   },
   robots: {

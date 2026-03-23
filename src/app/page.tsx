@@ -33,6 +33,36 @@ const features = [
   },
 ];
 
+/** Framing aligned with common esports-staking education copy: staking backs competitors / entries—not sportsbook-style betting. */
+function StakingVsBettingNote() {
+  return (
+    <section
+      className="mx-auto max-w-6xl px-4 py-6 sm:py-8"
+      aria-labelledby="staking-clarity-heading"
+    >
+      <div className="rounded-2xl border border-outline/30 bg-card/50 px-5 py-5 sm:px-8 sm:py-6">
+        <h2
+          id="staking-clarity-heading"
+          className="text-lg font-semibold tracking-tight text-foreground sm:text-xl"
+        >
+          Staking, not betting
+        </h2>
+        <p className="mt-3 text-sm leading-relaxed text-foreground/80 sm:text-base max-w-3xl">
+          ProStake is{" "}
+          <span className="font-medium text-foreground">
+            not a gambling platform
+          </span>
+          . Staking means you back players in live, skill-based matches -
+          supporting their competition and sharing in the outcome when they win
+          - similar to backing a player&apos;s entry for a share of the results.
+          That&apos;s different from placing a wager with a traditional
+          sportsbook.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 function BackgroundLayer({ shouldAnimate }: { shouldAnimate: boolean }) {
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
@@ -124,7 +154,8 @@ function Hero({ shouldAnimate }: { shouldAnimate: boolean }) {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Play & Stake directly on the App.
+              Play and stake on the app - back players in skill-based matches,
+              not the house.
             </motion.p>
             <motion.div
               className="flex gap-3 flex-wrap justify-center sm:justify-start"
@@ -176,7 +207,8 @@ function Hero({ shouldAnimate }: { shouldAnimate: boolean }) {
             Play Black Ops 7 win cash.
           </h1>
           <p className="text-xl text-foreground/80 mb-8 max-w-2xl">
-            Play & Stake directly on the App.
+            Play and stake on the app - back players in skill-based matches, not
+            the house.
           </p>
           <div className="flex gap-3 flex-wrap justify-center sm:justify-start">
             <Link
@@ -457,7 +489,7 @@ function FeaturesSection({ shouldAnimate }: { shouldAnimate: boolean }) {
             </h2>
             <p className="text-foreground/70">
               Experience the lowest fees, free tournaments, and premium support
-              that make ProStake the ultimate choice for serious players.
+              - staking on competitors, not betting against the house.
             </p>
           </motion.div>
           <motion.div
@@ -523,8 +555,8 @@ function FeaturesSection({ shouldAnimate }: { shouldAnimate: boolean }) {
             Competitive advantages that set us apart.
           </h2>
           <p className="text-foreground/70">
-            Experience the lowest fees, free tournaments, and premium support
-            that make ProStake the ultimate choice for serious players.
+            Experience the lowest fees, free tournaments, and premium support -
+            staking on competitors, not betting against the house.
           </p>
         </div>
         <div className="grid gap-6 lg:grid-cols-2">
@@ -682,7 +714,7 @@ function Footer() {
             <span className="text-primary">Pro</span>Stake
           </Link>
           <p className="mt-2 text-sm text-foreground/70">
-            Built for competitive excellence with transparent staking rails.
+            Competitive esports staking—back players, not the house.
           </p>
         </div>
         <div className="mt-6 flex flex-wrap gap-4 text-sm text-foreground/60 sm:mt-0">
@@ -713,8 +745,8 @@ export default function Home() {
       setIsMobile(
         window.innerWidth < 768 ||
           /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-            navigator.userAgent
-          )
+            navigator.userAgent,
+          ),
       );
     };
 
@@ -730,7 +762,8 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "ProStake",
-    description: "Skill-based wagering platform for competitive gaming",
+    description:
+      "Esports staking platform: back players in skill-based competitive matches - not traditional sportsbook betting.",
     url: "https://prostake.gg",
     potentialAction: {
       "@type": "SearchAction",
@@ -754,6 +787,7 @@ export default function Home() {
         <BackgroundLayer shouldAnimate={shouldAnimate} />
         <Navbar />
         <Hero shouldAnimate={shouldAnimate} />
+        <StakingVsBettingNote />
         <AppScreenshot shouldAnimate={shouldAnimate} />
         <StatsGrid shouldAnimate={shouldAnimate} />
         <FeaturesSection shouldAnimate={shouldAnimate} />

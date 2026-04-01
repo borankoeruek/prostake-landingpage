@@ -87,13 +87,7 @@ function Navbar() {
           </Link>
           <div className="hidden sm:flex items-center gap-4 text-sm">
             <Link
-              href="/#features"
-              className="opacity-80 hover:opacity-100 transition-opacity"
-            >
-              Features
-            </Link>
-            <Link
-              href="/#cta"
+              href="https://app.prostake.gg"
               className="opacity-80 hover:opacity-100 transition-opacity"
             >
               Get Started
@@ -105,14 +99,17 @@ function Navbar() {
               Contact
             </Link>
           </div>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => (window.location.href = "https://app.prostake.gg")}
-            className="rounded-md bg-primary text-onPrimary px-3 py-1.5 text-sm font-medium hover:opacity-90 transition-opacity"
-          >
-            Launch App
-          </motion.button>
+          <span className="btn-launch-fancy-groove">
+            <motion.button
+              type="button"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => (window.location.href = "https://app.prostake.gg")}
+              className="btn-launch-fancy"
+            >
+              Launch App
+            </motion.button>
+          </span>
         </div>
       </div>
     </motion.div>
@@ -152,13 +149,7 @@ function Footer() {
             <h4 className="font-semibold text-sm mb-3">Platform</h4>
             <div className="space-y-2 text-sm">
               <Link
-                href="/#features"
-                className="block opacity-80 hover:opacity-100 transition-opacity"
-              >
-                Features
-              </Link>
-              <Link
-                href="/#cta"
+                href="https://app.prostake.gg"
                 className="block opacity-80 hover:opacity-100 transition-opacity"
               >
                 Get Started
@@ -243,202 +234,22 @@ export default function Contact() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-center mb-16"
+              className="mx-auto max-w-2xl text-center"
             >
-              <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6">
+              <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">
                 Contact <span className="text-primary">Us</span>
               </h1>
-              <p className="text-xl opacity-80 max-w-3xl mx-auto">
-                Connect with our wagering specialists. Get answers to your
-                questions about skill-based competition and platform features.
+              <p className="text-lg opacity-80">
+                Questions about ProStake? Reach us by email.
               </p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              {/* Contact Information */}
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="space-y-8"
-              >
-                <div>
-                  <h2 className="text-2xl font-bold mb-6 text-primary">
-                    Get In Touch
-                  </h2>
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-4">
-                      <div className="text-2xl">🏢</div>
-                      <div>
-                        <h3 className="font-semibold text-lg">
-                          Company Address
-                        </h3>
-                        <p className="opacity-80">ProStake Inc.</p>
-                        <p className="opacity-80">
-                          1111B S Governors Ave STE 39981
-                        </p>
-                        <p className="opacity-80">Dover, DE 19904</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-4">
-                      <div className="text-2xl">📧</div>
-                      <div>
-                        <h3 className="font-semibold text-lg">Email</h3>
-                        <a
-                          href="mailto:borankrk@prostake.gg"
-                          className="opacity-80 hover:opacity-100 transition-opacity"
-                        >
-                          borankrk@prostake.gg
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Business Hours */}
-                <div>
-                  <h3 className="text-xl font-semibold mb-4 text-primary">
-                    Business Hours
-                  </h3>
-                  <div className="space-y-2 opacity-80">
-                    <div className="flex justify-between">
-                      <span>Monday - Friday:</span>
-                      <span>9:00 AM - 6:00 PM EST</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Saturday:</span>
-                      <span>10:00 AM - 4:00 PM EST</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Sunday:</span>
-                      <span>Closed</span>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Contact Form */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-outline/20"
-              >
-                <h2 className="text-2xl font-bold mb-6 text-primary">
-                  Send us a Message
-                </h2>
-                <form className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium mb-2">
-                        First Name
-                      </label>
-                      <input
-                        type="text"
-                        className="w-full px-4 py-3 bg-background border border-outline/40 rounded-lg focus:outline-none focus:border-primary transition-colors"
-                        placeholder="John"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium mb-2">
-                        Last Name
-                      </label>
-                      <input
-                        type="text"
-                        className="w-full px-4 py-3 bg-background border border-outline/40 rounded-lg focus:outline-none focus:border-primary transition-colors"
-                        placeholder="Doe"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium mb-2">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      className="w-full px-4 py-3 bg-background border border-outline/40 rounded-lg focus:outline-none focus:border-primary transition-colors"
-                      placeholder="john@example.com"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium mb-2">
-                      Subject
-                    </label>
-                    <select className="w-full px-4 py-3 bg-background border border-outline/40 rounded-lg focus:outline-none focus:border-primary transition-colors">
-                      <option>General Inquiry</option>
-                      <option>Technical Support</option>
-                      <option>Business Partnership</option>
-                      <option>Media Inquiry</option>
-                      <option>Other</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium mb-2">
-                      Message
-                    </label>
-                    <textarea
-                      rows={6}
-                      className="w-full px-4 py-3 bg-background border border-outline/40 rounded-lg focus:outline-none focus:border-primary transition-colors resize-none"
-                      placeholder="Tell us how we can help you..."
-                    ></textarea>
-                  </div>
-
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    type="submit"
-                    className="w-full bg-primary text-onPrimary py-3 px-6 rounded-lg font-semibold hover:opacity-90 transition-opacity"
-                  >
-                    Send Message
-                  </motion.button>
-                </form>
-              </motion.div>
-            </div>
-
-            {/* Company Information */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="mt-16 pt-12 border-t border-outline/40"
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
-                <div>
-                  <h3 className="font-semibold text-lg mb-4 text-primary">
-                    Company Information
-                  </h3>
-                  <div className="space-y-2 opacity-80">
-                    <div>
-                      <strong>Company Name:</strong> ProStake Inc.
-                    </div>
-                    <div>
-                      <strong>Incorporated:</strong> Delaware, USA
-                    </div>
-                    <div>
-                      <strong>License:</strong> Gaming License Pending
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-4 text-primary">
-                    Legal Compliance
-                  </h3>
-                  <div className="space-y-2 opacity-80">
-                    <p>
-                      ProStake Inc. is incorporated in Delaware, USA and
-                      operates in compliance with applicable gaming regulations.
-                    </p>
-                    <p>
-                      All gaming activities are conducted in accordance with
-                      state and federal laws and regulations.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <p className="mt-4">
+                <a
+                  href="mailto:borankrk@prostake.gg"
+                  className="font-medium text-primary underline-offset-4 hover:underline"
+                >
+                  borankrk@prostake.gg
+                </a>
+              </p>
             </motion.div>
           </div>
         </section>

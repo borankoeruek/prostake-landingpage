@@ -4,61 +4,97 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
-const stats = [
-  { value: "$100K+", label: "daily stakes" },
-  { value: "24/7", label: "live match coverage" },
-  { value: "$1 Mio", label: "in Tournaments 2026" },
-];
+import { AppStoreButton } from "../components/AppStoreButton";
+import { StakingClarityHeadline } from "../components/StakingClarityHeadline";
+import { UpsideModelSection } from "../components/UpsideModelSection";
 
-const features = [
-  {
-    title: "Available on the App Store",
-    body: "Download the app for free and start playing today.",
-    icon: "📱",
-  },
-  {
-    title: "Free Entry Tournaments",
-    body: "Daily free-to-enter tournaments with real prize pools. No entry costs required.",
-    icon: "🏆",
-  },
-  {
-    title: "Stake on Favorite Players",
-    body: "Support your favorite esports players and share in their victories with transparent staking.",
-    icon: "⭐",
-  },
-  {
-    title: "Free Live Support",
-    body: "24/7 live support for all games at no extra cost. Get help whenever you need it.",
-    icon: "🎧",
-  },
-];
+const heroPrimaryBtnClass =
+  "btn-hero-primary inline-flex items-center justify-center px-6 py-3 text-base";
+
+function AppPreviewAddressBar() {
+  return (
+    <div className="app-preview-address-bar" aria-hidden>
+      <div className="app-preview-address-field">
+        <svg
+          className="app-preview-address-lock"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden
+        >
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+        </svg>
+        <span className="app-preview-address-url">https://app.prostake.gg</span>
+      </div>
+    </div>
+  );
+}
 
 /** Framing aligned with common esports-staking education copy: staking backs competitors / entries—not sportsbook-style betting. */
-function StakingVsBettingNote() {
+function StakingVsBettingNote({ shouldAnimate }: { shouldAnimate: boolean }) {
+  const cardInner = (
+    <div className="staking-spotlight-inner px-6 py-7 sm:px-9 sm:py-8">
+      <div className="flex flex-col gap-6 sm:gap-7 lg:flex-row lg:items-center lg:gap-0">
+        <div className="shrink-0 pl-2 sm:pl-4">
+          <StakingClarityHeadline shouldAnimate={shouldAnimate} />
+        </div>
+        <div className="hidden min-w-[1.5rem] flex-[1_1_0%] items-stretch justify-center self-stretch lg:flex">
+          <div
+            className="pointer-events-none min-h-[5rem] w-px shrink-0 self-stretch bg-gradient-to-b from-transparent via-primary/25 to-transparent lg:min-h-full"
+            aria-hidden
+          />
+        </div>
+        <div className="min-w-0 flex-[2_1_0%] lg:pl-1">
+          <p className="text-base leading-relaxed text-foreground/82 sm:text-[1.05rem] sm:leading-[1.65]">
+            ProStake is{" "}
+            <span className="font-semibold text-tertiary">
+              not a gambling platform
+            </span>
+            . Staking means you{" "}
+            <span className="font-medium text-foreground">back players</span> in{" "}
+            <span className="font-medium text-foreground">
+              live, skill-based matches -
+            </span>{" "}
+            supporting their competition and{" "}
+            <span className="font-medium text-foreground">
+              sharing in the outcome
+            </span>{" "}
+            when they win.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <section
-      className="mx-auto max-w-6xl px-4 py-6 sm:py-8"
+      className="relative mx-auto max-w-6xl px-5 py-8 sm:px-6 sm:py-14"
       aria-labelledby="staking-clarity-heading"
     >
-      <div className="rounded-2xl border border-outline/30 bg-card/50 px-5 py-5 sm:px-8 sm:py-6">
-        <h2
-          id="staking-clarity-heading"
-          className="text-lg font-semibold tracking-tight text-foreground sm:text-xl"
+      <div className="pointer-events-none absolute -left-20 top-1/2 h-48 w-48 -translate-y-1/2 rounded-full bg-primary/20 blur-3xl" />
+      <div className="pointer-events-none absolute -right-16 top-0 h-32 w-32 rounded-full bg-tertiary/10 blur-3xl" />
+      {shouldAnimate ? (
+        <motion.div
+          className="staking-spotlight mx-auto w-full max-w-3xl overflow-hidden lg:max-w-4xl"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.55,
+            ease: [0.22, 1, 0.36, 1],
+            delay: 0.45,
+          }}
         >
-          Staking, not betting
-        </h2>
-        <p className="mt-3 text-sm leading-relaxed text-foreground/80 sm:text-base max-w-3xl">
-          ProStake is{" "}
-          <span className="font-medium text-foreground">
-            not a gambling platform
-          </span>
-          . Staking means you back players in live, skill-based matches -
-          supporting their competition and sharing in the outcome when they win
-          - similar to backing a player&apos;s entry for a share of the results.
-          That&apos;s different from placing a wager with a traditional
-          sportsbook.
-        </p>
-      </div>
+          {cardInner}
+        </motion.div>
+      ) : (
+        <div className="staking-spotlight mx-auto w-full max-w-3xl overflow-hidden lg:max-w-4xl">
+          {cardInner}
+        </div>
+      )}
     </section>
   );
 }
@@ -66,11 +102,31 @@ function StakingVsBettingNote() {
 function BackgroundLayer({ shouldAnimate }: { shouldAnimate: boolean }) {
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/20 to-background/90" />
+      <div className="landing-noise" aria-hidden />
+      <div className="landing-grid-pattern" aria-hidden />
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/25 via-background/95 to-background" />
+      <div
+        className="absolute -left-[20%] top-0 h-[min(80vh,720px)] w-[70%] rounded-full opacity-50 blur-[100px]"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, color-mix(in oklab, var(--primary), transparent 72%) 0%, transparent 65%)",
+        }}
+      />
+      <div
+        className="absolute -right-[15%] bottom-0 h-[min(70vh,600px)] w-[55%] rounded-full opacity-35 blur-[90px]"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, color-mix(in oklab, var(--tertiary), transparent 78%) 0%, transparent 62%)",
+        }}
+      />
       {shouldAnimate && (
         <>
           <motion.div
-            className="absolute right-[-6rem] top-16 h-64 w-64 rounded-full bg-primary/10 blur-3xl"
+            className="absolute right-[-6rem] top-16 h-72 w-72 rounded-full blur-3xl"
+            style={{
+              background:
+                "radial-gradient(circle, color-mix(in oklab, var(--primary), transparent 55%) 0%, transparent 70%)",
+            }}
             animate={{
               x: [-16, 24, -12],
               y: [0, 16, -8],
@@ -82,7 +138,11 @@ function BackgroundLayer({ shouldAnimate }: { shouldAnimate: boolean }) {
             }}
           />
           <motion.div
-            className="absolute left-[-4rem] bottom-10 h-72 w-72 rounded-full bg-slate-900/10 blur-3xl"
+            className="absolute left-[-4rem] bottom-10 h-80 w-80 rounded-full blur-3xl"
+            style={{
+              background:
+                "radial-gradient(circle, color-mix(in oklab, var(--secondary), transparent 60%) 0%, transparent 72%)",
+            }}
             animate={{
               x: [12, -20, 16],
               y: [4, -12, 8],
@@ -102,30 +162,36 @@ function BackgroundLayer({ shouldAnimate }: { shouldAnimate: boolean }) {
 
 function Navbar() {
   return (
-    <header className="sticky top-0 z-30 border-b border-outline/40 bg-background/90 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-        <Link href="#" className="text-lg font-semibold tracking-tight">
+    <header className="sticky top-0 z-30 px-4 pb-3 pt-4">
+      <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-5 py-3.5 nav-glass">
+        <Link
+          href="#"
+          className="inline-flex items-center text-2xl font-extrabold tracking-tight transition-opacity hover:opacity-90 sm:text-3xl"
+        >
           <span className="text-primary">Pro</span>Stake
         </Link>
-        <nav className="hidden items-center gap-6 text-sm font-medium text-foreground/80 sm:flex">
-          <Link href="#features" className="hover:text-primary">
-            Features
+        <span className="btn-launch-fancy-groove shrink-0">
+          <Link href="https://app.prostake.gg" className="btn-launch-fancy">
+            Launch App
           </Link>
-          <Link href="#process" className="hover:text-primary">
-            How it works
-          </Link>
-          <Link href="#cta" className="hover:text-primary">
-            Launch
-          </Link>
-        </nav>
-        <Link
-          href="https://app.prostake.gg"
-          className="rounded-full border border-primary/70 bg-primary px-4 py-2 text-sm font-semibold text-onPrimary hover:bg-primary/90"
-        >
-          Launch App
-        </Link>
+        </span>
       </div>
     </header>
+  );
+}
+
+function HeroTagline() {
+  return (
+    <span className="block text-balance">
+      <span className="hero-tagline-lead block text-foreground/78">
+        Back players in{" "}
+        <span className="font-semibold text-foreground/95">skill-based</span>{" "}
+        matches and
+      </span>
+      <span className="hero-tagline-crescendo mt-1.5 block text-2xl font-bold leading-tight tracking-tight sm:mt-2 sm:text-3xl sm:leading-none">
+        win when they win.
+      </span>
+    </span>
   );
 }
 
@@ -133,65 +199,70 @@ function Hero({ shouldAnimate }: { shouldAnimate: boolean }) {
   if (shouldAnimate) {
     return (
       <motion.section
-        className="relative overflow-hidden bg-background pt-0 pb-12 sm:py-24"
+        className="relative overflow-hidden bg-transparent pt-2 pb-16 sm:pb-24 sm:pt-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 lg:grid-cols-[1.3fr_minmax(0,1fr)] lg:items-center">
-          <div className="space-y-6">
+        <div className="pointer-events-none absolute left-1/2 top-0 h-px w-[min(90%,48rem)] -translate-x-1/2 bg-gradient-to-r from-transparent via-primary/35 to-transparent" />
+        <div className="mx-auto grid max-w-6xl gap-12 px-4 lg:grid-cols-[1.3fr_minmax(0,1fr)] lg:items-center lg:gap-14">
+          <div className="space-y-7 text-center sm:text-left">
+            <motion.div
+              className="mx-auto inline-flex h-1 w-14 rounded-full bg-gradient-to-r from-primary/20 via-primary to-tertiary/80 sm:mx-0"
+              initial={{ opacity: 0, scaleX: 0.3 }}
+              animate={{ opacity: 1, scaleX: 1 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              aria-hidden
+            />
             <motion.h1
-              className="text-5xl font-extrabold leading-tight text-foreground sm:text-6xl lg:text-7xl mb-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              className="hero-title-gradient text-5xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               Play Black Ops 7 win cash.
             </motion.h1>
             <motion.p
-              className="text-xl text-foreground/80 mb-8 max-w-2xl"
+              className="hero-sub-glow max-w-2xl text-xl leading-relaxed text-foreground/80 mx-auto sm:mx-0 sm:text-[1.35rem] sm:leading-snug"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Play and stake on the app - back players in skill-based matches,
-              not the house.
+              <HeroTagline />
             </motion.p>
             <motion.div
-              className="flex gap-3 flex-wrap justify-center sm:justify-start"
+              className="flex gap-4 flex-wrap justify-center sm:justify-start pt-1"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               <Link
                 href="https://app.prostake.gg"
-                className="rounded-xl bg-primary px-6 py-3 text-base font-semibold text-onPrimary hover:bg-primary/90"
+                className={heroPrimaryBtnClass}
               >
                 Start Playing
               </Link>
-              <Link
-                href="https://app.prostake.gg"
-                className="rounded-xl border border-outline/60 px-6 py-3 text-base font-semibold text-foreground/80 hover:border-primary hover:text-primary"
-              >
-                Sign In
-              </Link>
+              <AppStoreButton />
             </motion.div>
           </div>
           <motion.div
-            className="rounded-[32px] overflow-hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            className="hero-image-ring relative"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.85, delay: 0.25 }}
           >
-            <Image
-              src="/stake.png"
-              alt="ProStake staking interface"
-              width={400}
-              height={600}
-              quality={100}
-              className="w-full h-auto rounded-2xl"
-              priority
-            />
+            <div className="pointer-events-none absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-br from-primary/25 via-transparent to-tertiary/20 blur-2xl" />
+            <div className="hero-image-ring-inner">
+              <Image
+                src="/stake.png"
+                alt="ProStake staking interface"
+                width={400}
+                height={600}
+                quality={100}
+                className="w-full h-auto"
+                priority
+              />
+            </div>
           </motion.div>
         </div>
       </motion.section>
@@ -200,41 +271,43 @@ function Hero({ shouldAnimate }: { shouldAnimate: boolean }) {
 
   // Static version for mobile/no animations
   return (
-    <section className="relative overflow-hidden bg-background pt-6 pb-12 sm:py-24">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 lg:grid-cols-[1.3fr_minmax(0,1fr)] lg:items-center">
-        <div className="space-y-6">
-          <h1 className="text-5xl font-extrabold leading-tight text-foreground sm:text-6xl lg:text-7xl mb-4">
+    <section className="relative overflow-hidden bg-transparent pt-8 pb-16 sm:pb-24 sm:pt-10">
+      <div className="pointer-events-none absolute left-1/2 top-0 h-px w-[min(90%,48rem)] -translate-x-1/2 bg-gradient-to-r from-transparent via-primary/35 to-transparent" />
+      <div className="mx-auto grid max-w-6xl gap-12 px-4 lg:grid-cols-[1.3fr_minmax(0,1fr)] lg:items-center lg:gap-14">
+        <div className="space-y-7 text-center sm:text-left">
+          <div
+            className="mx-auto inline-flex h-1 w-14 rounded-full bg-gradient-to-r from-primary/20 via-primary to-tertiary/80 sm:mx-0"
+            aria-hidden
+          />
+          <h1 className="hero-title-gradient text-5xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
             Play Black Ops 7 win cash.
           </h1>
-          <p className="text-xl text-foreground/80 mb-8 max-w-2xl">
-            Play and stake on the app - back players in skill-based matches, not
-            the house.
+          <p className="hero-sub-glow max-w-2xl text-xl leading-relaxed text-foreground/80 mx-auto sm:mx-0 sm:text-[1.35rem] sm:leading-snug">
+            <HeroTagline />
           </p>
-          <div className="flex gap-3 flex-wrap justify-center sm:justify-start">
+          <div className="flex gap-4 flex-wrap justify-center sm:justify-start pt-1">
             <Link
               href="https://app.prostake.gg"
-              className="rounded-xl bg-primary px-6 py-3 text-base font-semibold text-onPrimary hover:bg-primary/90"
+              className={heroPrimaryBtnClass}
             >
               Start Playing
             </Link>
-            <Link
-              href="https://app.prostake.gg"
-              className="rounded-xl border border-outline/60 px-6 py-3 text-base font-semibold text-foreground/80 hover:border-primary hover:text-primary"
-            >
-              Sign In
-            </Link>
+            <AppStoreButton />
           </div>
         </div>
-        <div className="rounded-[32px] overflow-hidden">
-          <Image
-            src="/stake.png"
-            alt="ProStake staking interface"
-            width={400}
-            height={600}
-            quality={100}
-            className="w-full h-auto rounded-2xl"
-            priority
-          />
+        <div className="hero-image-ring relative">
+          <div className="pointer-events-none absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-br from-primary/25 via-transparent to-tertiary/20 blur-2xl" />
+          <div className="hero-image-ring-inner">
+            <Image
+              src="/stake.png"
+              alt="ProStake staking interface"
+              width={400}
+              height={600}
+              quality={100}
+              className="w-full h-auto"
+              priority
+            />
+          </div>
         </div>
       </div>
     </section>
@@ -261,66 +334,71 @@ function AppScreenshot({ shouldAnimate }: { shouldAnimate: boolean }) {
   if (shouldAnimate) {
     return (
       <motion.section
-        className="bg-background py-12 sm:py-24"
+        className="relative border-y border-outline/25 bg-gradient-to-b from-background via-surface/30 to-background py-16 sm:py-28"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <div className="mx-auto max-w-7xl px-4">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, color-mix(in oklab, var(--foreground), transparent 50%) 1px, transparent 0)",
+            backgroundSize: "28px 28px",
+          }}
+        />
+        <div className="relative mx-auto w-full max-w-[min(100%,96rem)] px-3 sm:px-6 lg:px-8">
           <motion.div
-            className="text-center mb-8 sm:mb-16"
+            className="text-center mb-10 sm:mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <p className="text-sm uppercase tracking-[0.4em] text-primary/70 mb-4">
+            <p className="text-sm font-medium uppercase tracking-[0.35em] text-primary/80 mb-4">
               App Preview
             </p>
-            <h2 className="text-3xl font-bold text-foreground sm:text-4xl mb-4">
+            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl mb-4">
               Experience ProStake in action
             </h2>
-            <p className="text-foreground/70 max-w-2xl mx-auto px-4">
-              See how our streamlined interface makes staking on your favorite
-              players intuitive and powerful.
-            </p>
           </motion.div>
           <motion.div
             className="flex justify-center"
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
-            <div className="relative max-w-6xl w-full">
+            <div className="relative w-full">
               <motion.div
-                className="rounded-2xl sm:rounded-3xl overflow-hidden"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
+                className="app-preview-frame"
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.35 }}
               >
-                <div className="relative w-full">
+                <div className="app-preview-frame-inner">
+                  <AppPreviewAddressBar />
                   <Image
                     src={imageSrc}
                     alt="ProStake App Screenshot"
                     width={400}
                     height={700}
-                    className="w-full h-auto rounded-xl sm:rounded-2xl"
+                    className="w-full h-auto"
                     priority
                     loading="eager"
                     fetchPriority="high"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 92vw, min(92rem, 100vw)"
                     quality={100}
                     placeholder="blur"
                     blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R+IRjWjBqO6O2mhP//Z"
                   />
                 </div>
               </motion.div>
-              {/* Decorative elements */}
               <motion.div
-                className="absolute -top-6 -left-6 h-12 w-12 rounded-full bg-primary/20 blur-xl"
+                className="absolute -left-8 -top-8 h-24 w-24 rounded-full bg-primary/25 blur-2xl"
                 animate={{
-                  scale: [1, 1.2, 1],
+                  scale: [1, 1.15, 1],
+                  opacity: [0.4, 0.65, 0.4],
                 }}
                 transition={{
                   duration: 6,
@@ -329,9 +407,10 @@ function AppScreenshot({ shouldAnimate }: { shouldAnimate: boolean }) {
                 }}
               />
               <motion.div
-                className="absolute -bottom-6 -right-6 h-16 w-16 rounded-full bg-primary/10 blur-xl"
+                className="absolute -bottom-10 -right-10 h-28 w-28 rounded-full bg-tertiary/20 blur-2xl"
                 animate={{
-                  scale: [1, 1.1, 1],
+                  scale: [1, 1.08, 1],
+                  opacity: [0.35, 0.55, 0.35],
                 }}
                 transition={{
                   duration: 8,
@@ -349,34 +428,43 @@ function AppScreenshot({ shouldAnimate }: { shouldAnimate: boolean }) {
 
   // Static version for mobile/no animations
   return (
-    <section className="bg-background py-12 sm:py-24">
-      <div className="mx-auto max-w-7xl px-4">
-        <div className="text-center mb-8 sm:mb-16">
-          <p className="text-sm uppercase tracking-[0.4em] text-primary/70 mb-4">
+    <section className="relative border-y border-outline/25 bg-gradient-to-b from-background via-surface/30 to-background py-16 sm:py-28">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.07]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 1px 1px, color-mix(in oklab, var(--foreground), transparent 50%) 1px, transparent 0)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+      <div className="relative mx-auto w-full max-w-[min(100%,96rem)] px-3 sm:px-6 lg:px-8">
+        <div className="text-center mb-10 sm:mb-16">
+          <p className="text-sm font-medium uppercase tracking-[0.35em] text-primary/80 mb-4">
             App Preview
           </p>
-          <h2 className="text-3xl font-bold text-foreground sm:text-4xl mb-4">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl mb-4">
             Experience ProStake in action
           </h2>
-          <p className="text-foreground/70 max-w-2xl mx-auto px-4">
+          <p className="text-foreground/70 max-w-2xl mx-auto px-4 text-lg leading-relaxed">
             See how our streamlined interface makes staking on your favorite
             players intuitive and powerful.
           </p>
         </div>
         <div className="flex justify-center">
-          <div className="relative max-w-6xl w-full">
-            <div className="rounded-2xl sm:rounded-3xl overflow-hidden">
-              <div className="relative w-full">
+          <div className="relative w-full">
+            <div className="app-preview-frame">
+              <div className="app-preview-frame-inner">
+                <AppPreviewAddressBar />
                 <Image
                   src={imageSrc}
                   alt="ProStake App Screenshot"
                   width={400}
                   height={700}
-                  className="w-full h-auto rounded-xl sm:rounded-2xl"
+                  className="w-full h-auto"
                   priority
                   loading="eager"
                   fetchPriority="high"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 92vw, min(92rem, 100vw)"
                   quality={100}
                   placeholder="blur"
                   blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R+IRjWjBqO6O2mhP//Z"
@@ -390,346 +478,38 @@ function AppScreenshot({ shouldAnimate }: { shouldAnimate: boolean }) {
   );
 }
 
-function StatsGrid({ shouldAnimate }: { shouldAnimate: boolean }) {
-  if (shouldAnimate) {
-    return (
-      <motion.section
-        className="mx-auto max-w-6xl px-4 py-10"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6 }}
-      >
-        <motion.div
-          className="grid gap-6 rounded-[28px] border border-outline/30 bg-card/60 p-6 sm:grid-cols-3"
-          initial={{ scale: 0.95 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              className="space-y-2 text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.5,
-                delay: 0.3 + index * 0.1,
-                type: "spring",
-                stiffness: 200,
-              }}
-            >
-              <motion.p
-                className="text-3xl font-bold text-primary"
-                initial={{ scale: 0.5 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.6,
-                  delay: 0.4 + index * 0.1,
-                  type: "spring",
-                  stiffness: 300,
-                }}
-              >
-                {stat.value}
-              </motion.p>
-              <p className="text-sm uppercase tracking-[0.3em] text-foreground/60">
-                {stat.label}
-              </p>
-            </motion.div>
-          ))}
-        </motion.div>
-      </motion.section>
-    );
-  }
-
-  // Static version for mobile/no animations
-  return (
-    <section className="mx-auto max-w-6xl px-4 py-10">
-      <div className="grid gap-6 rounded-[28px] border border-outline/30 bg-card/60 p-6 sm:grid-cols-3">
-        {stats.map((stat) => (
-          <div key={stat.label} className="space-y-2 text-center">
-            <p className="text-3xl font-bold text-primary">{stat.value}</p>
-            <p className="text-sm uppercase tracking-[0.3em] text-foreground/60">
-              {stat.label}
-            </p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function FeaturesSection({ shouldAnimate }: { shouldAnimate: boolean }) {
-  if (shouldAnimate) {
-    return (
-      <motion.section
-        id="features"
-        className="bg-background py-20"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="mx-auto max-w-6xl px-4 space-y-10">
-          <motion.div
-            className="space-y-3 text-center"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <p className="text-sm uppercase tracking-[0.4em] text-primary/70">
-              Why Choose ProStake
-            </p>
-            <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
-              Competitive advantages that set us apart.
-            </h2>
-            <p className="text-foreground/70">
-              Experience the lowest fees, free tournaments, and premium support
-              - staking on competitors, not betting against the house.
-            </p>
-          </motion.div>
-          <motion.div
-            className="grid gap-6 lg:grid-cols-2"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            {features.map((feature, index) => (
-              <motion.article
-                key={feature.title}
-                className="rounded-2xl border border-outline/30 bg-card/50 p-6 hover:border-primary/60"
-                initial={{ opacity: 0, y: 40, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.6,
-                  delay: 0.6 + index * 0.1,
-                  ease: "easeOut",
-                }}
-                whileHover={{
-                  scale: 1.02,
-                  borderColor: "rgb(var(--primary) / 0.6)",
-                  transition: { duration: 0.2 },
-                }}
-              >
-                <motion.div
-                  className="text-3xl"
-                  initial={{ scale: 0.8 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 0.8 + index * 0.1,
-                    type: "spring",
-                    stiffness: 300,
-                  }}
-                >
-                  {feature.icon}
-                </motion.div>
-                <h3 className="mt-4 text-xl font-semibold text-foreground">
-                  {feature.title}
-                </h3>
-                <p className="mt-2 text-foreground/70">{feature.body}</p>
-              </motion.article>
-            ))}
-          </motion.div>
-        </div>
-      </motion.section>
-    );
-  }
-
-  // Static version for mobile/no animations
-  return (
-    <section id="features" className="bg-background py-20">
-      <div className="mx-auto max-w-6xl px-4 space-y-10">
-        <div className="space-y-3 text-center">
-          <p className="text-sm uppercase tracking-[0.4em] text-primary/70">
-            Why Choose ProStake
-          </p>
-          <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
-            Competitive advantages that set us apart.
-          </h2>
-          <p className="text-foreground/70">
-            Experience the lowest fees, free tournaments, and premium support -
-            staking on competitors, not betting against the house.
-          </p>
-        </div>
-        <div className="grid gap-6 lg:grid-cols-2">
-          {features.map((feature) => (
-            <article
-              key={feature.title}
-              className="rounded-2xl border border-outline/30 bg-card/50 p-6 hover:border-primary/60"
-            >
-              <div className="text-3xl">{feature.icon}</div>
-              <h3 className="mt-4 text-xl font-semibold text-foreground">
-                {feature.title}
-              </h3>
-              <p className="mt-2 text-foreground/70">{feature.body}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CTA({ shouldAnimate }: { shouldAnimate: boolean }) {
-  if (shouldAnimate) {
-    return (
-      <motion.section
-        id="cta"
-        className="relative bg-gradient-to-r from-primary to-primary/70 py-12 text-onPrimary"
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-primary to-primary/70"
-          animate={{
-            backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          style={{
-            backgroundSize: "200% 200%",
-          }}
-        />
-        <div className="relative mx-auto max-w-5xl px-4 text-center">
-          <motion.p
-            className="text-sm uppercase tracking-[0.3em] opacity-70"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Get Started
-          </motion.p>
-          <motion.h2
-            className="mt-3 text-3xl font-bold sm:text-4xl"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            Join 50,000+ players.
-          </motion.h2>
-          <motion.p
-            className="mt-3 text-lg opacity-80"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
-            Launch the ProStake dashboard, browse your favorite esports, and
-            stake with confidence.
-          </motion.p>
-          <motion.div
-            className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Link
-                href="https://app.prostake.gg"
-                className="rounded-full bg-background/10 px-8 py-3 text-base font-semibold hover:bg-background/20"
-              >
-                Launch Web App
-              </Link>
-            </motion.div>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Link
-                href="https://app.prostake.gg"
-                className="rounded-full border border-onPrimary/40 px-8 py-3 text-base font-semibold hover:border-onPrimary"
-              >
-                Join Beta
-              </Link>
-            </motion.div>
-          </motion.div>
-        </div>
-      </motion.section>
-    );
-  }
-
-  // Static version for mobile/no animations
-  return (
-    <section
-      id="cta"
-      className="relative bg-gradient-to-r from-primary to-primary/70 py-12 text-onPrimary"
-    >
-      <div className="relative mx-auto max-w-5xl px-4 text-center">
-        <p className="text-sm uppercase tracking-[0.3em] opacity-70">
-          Get Started
-        </p>
-        <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
-          Ready to guard your stake and win?
-        </h2>
-        <p className="mt-3 text-lg opacity-80">
-          Launch the ProStake dashboard, browse your favorite esports, and stake
-          with confidence.
-        </p>
-        <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-          <Link
-            href="https://app.prostake.gg"
-            className="rounded-full bg-background/10 px-8 py-3 text-base font-semibold hover:bg-background/20"
-          >
-            Launch Web App
-          </Link>
-          <Link
-            href="https://app.prostake.gg"
-            className="rounded-full border border-onPrimary/40 px-8 py-3 text-base font-semibold hover:border-onPrimary"
-          >
-            Join Beta
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function Footer() {
   return (
-    <footer className="border-t border-outline/40 bg-card/60 py-6">
-      <div className="mx-auto max-w-6xl px-4 sm:flex sm:items-center sm:justify-between">
-        <div>
-          <Link href="#" className="text-lg font-semibold">
+    <footer className="relative bg-gradient-to-b from-background via-card/40 to-background pb-10 pt-14">
+      <div className="footer-edge" />
+      <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 sm:flex-row sm:items-start sm:justify-between">
+        <div className="max-w-md">
+          <Link
+            href="#"
+            className="text-lg font-bold tracking-tight transition-opacity hover:opacity-90"
+          >
             <span className="text-primary">Pro</span>Stake
           </Link>
-          <p className="mt-2 text-sm text-foreground/70">
+          <p className="mt-3 text-sm leading-relaxed text-foreground/70">
             Competitive esports staking—back players, not the house.
           </p>
         </div>
-        <div className="mt-6 flex flex-wrap gap-4 text-sm text-foreground/60 sm:mt-0">
-          <Link href="/privacy" className="hover:text-primary">
+        <nav
+          className="flex flex-wrap gap-x-8 gap-y-3 text-sm font-medium text-foreground/65"
+          aria-label="Footer"
+        >
+          <Link href="/privacy" className="footer-link hover:text-primary">
             Privacy
           </Link>
-          <Link href="/contact" className="hover:text-primary">
+          <Link href="/contact" className="footer-link hover:text-primary">
             Contact
           </Link>
-          <Link href="/faq" className="hover:text-primary">
+          <Link href="/faq" className="footer-link hover:text-primary">
             FAQ
           </Link>
-        </div>
+        </nav>
       </div>
-      <div className="mt-8 border-t border-outline/30 pt-4 text-center text-xs uppercase tracking-[0.3em] text-foreground/50">
+      <div className="mx-auto mt-12 max-w-6xl border-t border-outline/25 px-4 pt-8 text-center text-xs uppercase tracking-[0.28em] text-foreground/45">
         © {new Date().getFullYear()} ProStake Inc. All rights reserved.
       </div>
     </footer>
@@ -783,15 +563,13 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="relative overflow-x-hidden bg-background">
+      <div className="landing-page-shell relative overflow-x-hidden bg-background">
         <BackgroundLayer shouldAnimate={shouldAnimate} />
         <Navbar />
         <Hero shouldAnimate={shouldAnimate} />
-        <StakingVsBettingNote />
+        <StakingVsBettingNote shouldAnimate={shouldAnimate} />
         <AppScreenshot shouldAnimate={shouldAnimate} />
-        <StatsGrid shouldAnimate={shouldAnimate} />
-        <FeaturesSection shouldAnimate={shouldAnimate} />
-        <CTA shouldAnimate={shouldAnimate} />
+        <UpsideModelSection shouldAnimate={shouldAnimate} />
         <Footer />
       </div>
     </>

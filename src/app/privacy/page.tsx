@@ -51,12 +51,6 @@ function Navbar() {
           </Link>
           <div className="hidden sm:flex items-center gap-4 text-sm">
             <Link
-              href="/#features"
-              className="opacity-80 hover:opacity-100 transition-opacity"
-            >
-              Features
-            </Link>
-            <Link
               href="/faq"
               className="opacity-80 hover:opacity-100 transition-opacity"
             >
@@ -75,20 +69,23 @@ function Navbar() {
               Privacy
             </Link>
             <Link
-              href="/#cta"
+              href="https://app.prostake.gg"
               className="opacity-80 hover:opacity-100 transition-opacity"
             >
               Get Started
             </Link>
           </div>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={handleLaunch}
-            className="rounded-md bg-primary text-onPrimary px-3 py-1.5 text-sm font-medium hover:opacity-90 transition-opacity"
-          >
-            Launch App
-          </motion.button>
+          <span className="btn-launch-fancy-groove">
+            <motion.button
+              type="button"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={handleLaunch}
+              className="btn-launch-fancy"
+            >
+              Launch App
+            </motion.button>
+          </span>
         </div>
       </div>
     </motion.div>
@@ -270,13 +267,7 @@ function Footer() {
             <h4 className="font-semibold text-sm mb-3">Platform</h4>
             <div className="space-y-2 text-sm">
               <Link
-                href="/#features"
-                className="block opacity-80 hover:opacity-100 transition-opacity"
-              >
-                Features
-              </Link>
-              <Link
-                href="/#cta"
+                href="https://app.prostake.gg"
                 className="block opacity-80 hover:opacity-100 transition-opacity"
               >
                 Get Started

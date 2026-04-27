@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 const LINE1 = "Staking";
 const LINE2 = "not betting";
 const MS_PER_CHAR = 52;
-/** Pause after line 1 finishes before line 2 begins. */
-const PAUSE_AFTER_LINE1_MS = 1020;
+/** Pause after line 1 finishes before line 2 begins (same as between typed chars on line 1). */
+const PAUSE_AFTER_LINE1_MS = MS_PER_CHAR;
 /** Align with card entrance (`motion.div` delay ~0.45s). */
 const START_DELAY_MS = 520;
 

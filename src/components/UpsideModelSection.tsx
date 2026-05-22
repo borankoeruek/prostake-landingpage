@@ -83,7 +83,7 @@ function SliderRow({
       {hint ? (
         hintVariant === "info" ? (
           <div
-            className="upside-hint-info flex gap-2.5 rounded-lg border border-primary/22 bg-primary/[0.08] px-3 py-2.5 sm:gap-3 sm:px-3.5 sm:py-3"
+            className="upside-hint-info mt-4 flex gap-2.5 rounded-lg border border-primary/22 bg-primary/[0.08] px-3 py-2.5 sm:mt-5 sm:gap-3 sm:px-3.5 sm:py-3"
             role="note"
           >
             <span className="text-primary/90" aria-hidden>

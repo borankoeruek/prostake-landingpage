@@ -490,27 +490,26 @@ function Footer() {
           >
             <span className="text-primary">Pro</span>Stake
           </Link>
-          <p className="mt-3 text-sm leading-relaxed text-foreground/70">
-            Competitive esports staking—back players, not the house.
-          </p>
         </div>
         <nav
           className="flex flex-wrap gap-x-8 gap-y-3 text-sm font-medium text-foreground/65"
           aria-label="Footer"
         >
-          <Link href="/privacy" className="footer-link hover:text-primary">
-            Privacy
-          </Link>
-          <Link href="/contact" className="footer-link hover:text-primary">
+          <a
+            href="mailto:borankrk@prostake.gg"
+            className="footer-link hover:text-primary"
+          >
             Contact
-          </Link>
-          <Link href="/faq" className="footer-link hover:text-primary">
-            FAQ
-          </Link>
+          </a>
+          <a
+            href="https://x.com/ProStakegg"
+            className="footer-link hover:text-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            X
+          </a>
         </nav>
-      </div>
-      <div className="mx-auto mt-12 max-w-6xl border-t border-outline/25 px-4 pt-8 text-center text-xs uppercase tracking-[0.28em] text-foreground/45">
-        © {new Date().getFullYear()} ProStake Inc. All rights reserved.
       </div>
     </footer>
   );

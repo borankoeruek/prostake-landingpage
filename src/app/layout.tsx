@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { PostHogProvider } from "./providers";
+import { LANDING_PAGE_PREPARATION_MODE } from "./landingPageMode";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,9 +15,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ProStake - Esports Staking Platform",
-  description:
-    "Back players in skill-based matches—not the house. Staking means supporting competitors and sharing in the outcome; ProStake is built for competitive gaming, not traditional sportsbook betting.",
+  title: LANDING_PAGE_PREPARATION_MODE
+    ? "ProStake - Building Something New"
+    : "ProStake - Esports Staking Platform",
+  description: LANDING_PAGE_PREPARATION_MODE
+    ? "The ProStake landing page is in preparation mode while we build the next version."
+    : "Back players in skill-based matches—not the house. Staking means supporting competitors and sharing in the outcome; ProStake is built for competitive gaming, not traditional sportsbook betting.",
   metadataBase: new URL("https://prostake.gg"),
   keywords: [
     "ProStake",
@@ -34,9 +38,12 @@ export const metadata: Metadata = {
   creator: "ProStake",
   publisher: "ProStake Inc.",
   openGraph: {
-    title: "ProStake - Esports Staking Platform",
-    description:
-      "Back players in skill-based matches—not the house. Staking means supporting competitors and sharing in the outcome; built for competitive gaming, not sportsbook betting.",
+    title: LANDING_PAGE_PREPARATION_MODE
+      ? "ProStake - Building Something New"
+      : "ProStake - Esports Staking Platform",
+    description: LANDING_PAGE_PREPARATION_MODE
+      ? "The ProStake landing page is in preparation mode while we build the next version."
+      : "Back players in skill-based matches—not the house. Staking means supporting competitors and sharing in the outcome; built for competitive gaming, not sportsbook betting.",
     url: "https://prostake.gg",
     siteName: "ProStake",
     images: [
@@ -44,7 +51,9 @@ export const metadata: Metadata = {
         url: "https://prostake.gg/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "ProStake - Esports Staking Platform",
+        alt: LANDING_PAGE_PREPARATION_MODE
+          ? "ProStake - Building Something New"
+          : "ProStake - Esports Staking Platform",
       },
     ],
     locale: "en_US",
@@ -52,16 +61,19 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ProStake - Esports Staking Platform",
-    description:
-      "Back players in skill-based matches—not the house. Staking supports competitors; not traditional sportsbook betting.",
+    title: LANDING_PAGE_PREPARATION_MODE
+      ? "ProStake - Building Something New"
+      : "ProStake - Esports Staking Platform",
+    description: LANDING_PAGE_PREPARATION_MODE
+      ? "The ProStake landing page is in preparation mode while we build the next version."
+      : "Back players in skill-based matches—not the house. Staking supports competitors; not traditional sportsbook betting.",
     images: ["https://prostake.gg/og-image.jpg"],
   },
   robots: {
-    index: true,
+    index: !LANDING_PAGE_PREPARATION_MODE,
     follow: true,
     googleBot: {
-      index: true,
+      index: !LANDING_PAGE_PREPARATION_MODE,
       follow: true,
       "max-video-preview": -1,
       "max-image-preview": "large",

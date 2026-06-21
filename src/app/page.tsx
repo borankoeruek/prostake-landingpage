@@ -7,6 +7,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { AppStoreButton } from "../components/AppStoreButton";
 import { StakingClarityHeadline } from "../components/StakingClarityHeadline";
 import { UpsideModelSection } from "../components/UpsideModelSection";
+import { LANDING_PAGE_PREPARATION_MODE } from "./landingPageMode";
 
 const heroPrimaryBtnClass =
   "btn-hero-primary inline-flex items-center justify-center px-6 py-3 text-base";
@@ -157,6 +158,33 @@ function BackgroundLayer({ shouldAnimate }: { shouldAnimate: boolean }) {
         </>
       )}
     </div>
+  );
+}
+
+function PreparationModePage() {
+  return (
+    <main className="landing-page-shell relative flex min-h-dvh items-center justify-center overflow-hidden bg-background px-6 text-center">
+      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+        <div className="landing-noise" aria-hidden />
+        <div className="landing-grid-pattern" aria-hidden />
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-background/95 to-background" />
+        <div className="absolute left-1/2 top-1/2 h-[28rem] w-[28rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/20 blur-3xl" />
+        <div className="absolute bottom-[-8rem] right-[-8rem] h-80 w-80 rounded-full bg-tertiary/10 blur-3xl" />
+      </div>
+
+      <section className="relative mx-auto max-w-2xl rounded-3xl border border-outline/35 bg-surface/35 px-6 py-10 shadow-2xl shadow-black/25 backdrop-blur-xl sm:px-12 sm:py-14">
+        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.32em] text-primary/85">
+          ProStake
+        </p>
+        <h1 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-6xl">
+          We&apos;re building something new.
+        </h1>
+        <p className="mx-auto mt-5 max-w-lg text-base leading-7 text-foreground/70 sm:text-lg">
+          The ProStake landing page is in preparation mode. Check back soon for
+          the next version.
+        </p>
+      </section>
+    </main>
   );
 }
 
@@ -515,7 +543,7 @@ function Footer() {
   );
 }
 
-export default function Home() {
+function LandingPageContent() {
   const prefersReducedMotion = useReducedMotion();
   const [isMobile, setIsMobile] = useState(false);
 
@@ -573,4 +601,12 @@ export default function Home() {
       </div>
     </>
   );
+}
+
+export default function Home() {
+  if (LANDING_PAGE_PREPARATION_MODE) {
+    return <PreparationModePage />;
+  }
+
+  return <LandingPageContent />;
 }

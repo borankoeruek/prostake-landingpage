@@ -1,2 +1,2 @@
-export const LANDING_PAGE_PREPARATION_MODE = true;
+export const LANDING_PAGE_PREPARATION_MODE = false;
 

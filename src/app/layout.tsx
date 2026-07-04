@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { PostHogProvider } from "./providers";
-import { LANDING_PAGE_PREPARATION_MODE } from "./landingPageMode";
+import {
+  LANDING_PAGE_PREPARATION_MODE,
+  LANDING_PAGE_REDIRECT_TO_APP,
+} from "./landingPageMode";
+
+const APP_URL = "https://app.prostake.gg";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,12 +20,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: LANDING_PAGE_PREPARATION_MODE
-    ? "ProStake - Building Something New"
-    : "ProStake - Esports Staking Platform",
-  description: LANDING_PAGE_PREPARATION_MODE
-    ? "The ProStake landing page is in preparation mode while we build the next version."
-    : "Back players in skill-based matches—not the house. Staking means supporting competitors and sharing in the outcome; ProStake is built for competitive gaming, not traditional sportsbook betting.",
+  title: LANDING_PAGE_REDIRECT_TO_APP
+    ? "ProStake"
+    : LANDING_PAGE_PREPARATION_MODE
+      ? "ProStake - Building Something New"
+      : "ProStake - Esports Staking Platform",
+  description: LANDING_PAGE_REDIRECT_TO_APP
+    ? "Redirecting to the ProStake app."
+    : LANDING_PAGE_PREPARATION_MODE
+      ? "The ProStake landing page is in preparation mode while we build the next version."
+      : "Back players in skill-based matches—not the house. Staking means supporting competitors and sharing in the outcome; ProStake is built for competitive gaming, not traditional sportsbook betting.",
   metadataBase: new URL("https://prostake.gg"),
   keywords: [
     "ProStake",
@@ -70,10 +79,10 @@ export const metadata: Metadata = {
     images: ["https://prostake.gg/og-image.jpg"],
   },
   robots: {
-    index: !LANDING_PAGE_PREPARATION_MODE,
+    index: !LANDING_PAGE_REDIRECT_TO_APP && !LANDING_PAGE_PREPARATION_MODE,
     follow: true,
     googleBot: {
-      index: !LANDING_PAGE_PREPARATION_MODE,
+      index: !LANDING_PAGE_REDIRECT_TO_APP && !LANDING_PAGE_PREPARATION_MODE,
       follow: true,
       "max-video-preview": -1,
       "max-image-preview": "large",
@@ -100,6 +109,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {LANDING_PAGE_REDIRECT_TO_APP ? (
+          <meta httpEquiv="refresh" content={`0;url=${APP_URL}`} />
+        ) : null}
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground min-h-dvh`}
         suppressHydrationWarning={true}

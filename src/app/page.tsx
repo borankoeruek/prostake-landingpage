@@ -7,7 +7,12 @@ import { motion, useReducedMotion } from "framer-motion";
 import { AppStoreButton } from "../components/AppStoreButton";
 import { StakingClarityHeadline } from "../components/StakingClarityHeadline";
 import { UpsideModelSection } from "../components/UpsideModelSection";
-import { LANDING_PAGE_PREPARATION_MODE } from "./landingPageMode";
+import {
+  LANDING_PAGE_PREPARATION_MODE,
+  LANDING_PAGE_REDIRECT_TO_APP,
+} from "./landingPageMode";
+
+const APP_URL = "https://app.prostake.gg";
 
 const heroPrimaryBtnClass =
   "btn-hero-primary inline-flex items-center justify-center px-6 py-3 text-base";
@@ -158,6 +163,23 @@ function BackgroundLayer({ shouldAnimate }: { shouldAnimate: boolean }) {
         </>
       )}
     </div>
+  );
+}
+
+function RedirectToAppPage() {
+  useEffect(() => {
+    window.location.replace(APP_URL);
+  }, []);
+
+  return (
+    <main className="landing-page-shell relative flex min-h-dvh items-center justify-center bg-background px-6 text-center">
+      <p className="text-foreground/70">
+        Redirecting to ProStake…{" "}
+        <a href={APP_URL} className="font-medium text-primary underline-offset-2 hover:underline">
+          Open app
+        </a>
+      </p>
+    </main>
   );
 }
 
@@ -604,6 +626,10 @@ function LandingPageContent() {
 }
 
 export default function Home() {
+  if (LANDING_PAGE_REDIRECT_TO_APP) {
+    return <RedirectToAppPage />;
+  }
+
   if (LANDING_PAGE_PREPARATION_MODE) {
     return <PreparationModePage />;
   }

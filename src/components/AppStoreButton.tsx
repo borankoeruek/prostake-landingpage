@@ -1,8 +1,7 @@
 import Link from "next/link";
+import { PROSTAKE_IOS_APP_STORE_URL } from "../constants/appStore";
 
-const APP_STORE_HREF =
-  process.env.NEXT_PUBLIC_APP_STORE_URL ??
-  "https://apps.apple.com/de/app/prostake-esports-staking/id6753223710";
+const APP_STORE_HREF = PROSTAKE_IOS_APP_STORE_URL;
 
 type AppStoreButtonProps = {
   className?: string;

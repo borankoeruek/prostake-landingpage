@@ -11,7 +11,7 @@ import {
 
 function BulletCheck() {
   return (
-    <span className="ads-check-box" aria-hidden>
+    <span className="iosgate-check" aria-hidden>
       <svg viewBox="0 0 12 12" width={12} height={12} fill="none">
         <path
           d="M2.5 6.2 4.8 8.5 9.5 3.8"
@@ -83,32 +83,30 @@ export default function AdsPageClient() {
   }, []);
 
   return (
-    <main className="ads-shell">
-      <div className="ads-card ads-card-hero">
+    <main className="iosgate-shell">
+      <div className="iosgate-panel iosgate-panel-hero">
         <Image
           src="/prostakeAppLogo.png"
           alt="ProStake"
           width={44}
           height={44}
-          className="ads-card-icon"
+          className="iosgate-icon"
           priority
         />
-        <h1 className="ads-headline">
-          <span className="ads-headline-line">Download the app</span>
-          <span className="ads-headline-line">for free.</span>
-          <span className="ads-headline-line ads-headline-accent">
+        <h1 className="iosgate-headline">
+          <span className="iosgate-headline-line">Download the app</span>
+          <span className="iosgate-headline-line">for free.</span>
+          <span className="iosgate-headline-line iosgate-headline-accent">
             Get started.
           </span>
         </h1>
-        <p className="ads-card-sub">
-          Available on the App Store for iPhone.
-        </p>
+        <p className="iosgate-sub">Available on the App Store for iPhone.</p>
       </div>
 
-      <div className="ads-card ads-card-list">
-        <ul className="ads-checklist">
+      <div className="iosgate-panel iosgate-panel-list">
+        <ul className="iosgate-list">
           {HIGHLIGHTS.map((line) => (
-            <li key={line} className="ads-checklist-item">
+            <li key={line} className="iosgate-list-item">
               <BulletCheck />
               <span>{line}</span>
             </li>
@@ -119,17 +117,17 @@ export default function AdsPageClient() {
       <button
         type="button"
         onClick={continueToAppStore}
-        className="ads-cta-app-store"
+        className="iosgate-store-btn"
         aria-label="Download on the App Store"
       >
         <AppleMark className="shrink-0" />
-        <span className="ads-cta-app-store-label">
-          <span className="ads-cta-app-store-kicker">Download on the</span>
-          <span className="ads-cta-app-store-title">App Store</span>
+        <span className="iosgate-store-btn-label">
+          <span className="iosgate-store-btn-kicker">Download on the</span>
+          <span className="iosgate-store-btn-title">App Store</span>
         </span>
       </button>
 
-      <p className="ads-footer-note">
+      <p className="iosgate-note">
         On iPhone we open the App Store automatically. Tap the button if
         nothing happens.
       </p>

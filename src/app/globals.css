@@ -655,16 +655,16 @@ body {
   background: color-mix(in oklab, var(--surface-variant), transparent 20%);
 }
 
-/* —— /ads: dark card landing (ProStake palette) —— */
+/* —— /ads route: iOS download gate (avoid `ads-*` class names — adblockers hide them) —— */
 
-.ads-landing-root {
-  --ads-bg: #121a2b;
-  --ads-card: #1e2a45;
-  --ads-card-border: rgba(85, 112, 134, 0.35);
-  --ads-text: rgb(213, 220, 235);
-  --ads-text-muted: rgb(177, 186, 211);
-  --ads-primary: rgb(20, 117, 225);
-  --ads-primary-bright: #3b9bff;
+.iosgate-root {
+  --iosgate-bg: #121a2b;
+  --iosgate-panel: #1e2a45;
+  --iosgate-panel-border: rgba(85, 112, 134, 0.35);
+  --iosgate-text: rgb(213, 220, 235);
+  --iosgate-text-muted: rgb(177, 186, 211);
+  --iosgate-primary: rgb(20, 117, 225);
+  --iosgate-primary-bright: #3b9bff;
 
   display: flex;
   /* svh = stable viewport; avoids jump/clip from mobile browser chrome.
@@ -690,8 +690,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--ads-text);
-  background: var(--ads-bg);
+  color: var(--iosgate-text);
+  background: var(--iosgate-bg);
   background-image: radial-gradient(
     80% 50% at 50% -10%,
     rgba(20, 117, 225, 0.18) 0%,
@@ -701,12 +701,12 @@ body {
 
 /* Only center when there is clearly enough vertical room. */
 @media (min-height: 720px) {
-  .ads-landing-root {
+  .iosgate-root {
     justify-content: center;
   }
 }
 
-.ads-shell {
+.iosgate-shell {
   display: flex;
   width: 100%;
   max-width: 26rem;
@@ -716,25 +716,25 @@ body {
     max(1.25rem, env(safe-area-inset-bottom));
 }
 
-.ads-card {
+.iosgate-panel {
   border-radius: 1.25rem;
-  border: 1px solid var(--ads-card-border);
-  background: var(--ads-card);
+  border: 1px solid var(--iosgate-panel-border);
+  background: var(--iosgate-panel);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
 }
 
-.ads-card-hero {
+.iosgate-panel-hero {
   padding: 1.25rem 1.25rem 1.375rem;
 }
 
-.ads-card-icon {
+.iosgate-icon {
   width: 2.75rem;
   height: 2.75rem;
   border-radius: 0.625rem;
   object-fit: cover;
 }
 
-.ads-headline {
+.iosgate-headline {
   margin: 1rem 0 0;
   font-size: clamp(1.75rem, 7vw, 2.125rem);
   font-weight: 700;
@@ -742,33 +742,33 @@ body {
   letter-spacing: -0.03em;
 }
 
-.ads-headline-line {
+.iosgate-headline-line {
   display: block;
-  color: var(--ads-text);
+  color: var(--iosgate-text);
 }
 
-.ads-headline-accent {
-  color: var(--ads-primary-bright);
+.iosgate-headline-accent {
+  color: var(--iosgate-primary-bright);
 }
 
-.ads-card-sub {
+.iosgate-sub {
   margin: 0.875rem 0 0;
   font-size: 0.9375rem;
   line-height: 1.45;
-  color: var(--ads-text-muted);
+  color: var(--iosgate-text-muted);
 }
 
-.ads-card-list {
+.iosgate-panel-list {
   padding: 0.375rem 1.25rem;
 }
 
-.ads-checklist {
+.iosgate-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.ads-checklist-item {
+.iosgate-list-item {
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -776,14 +776,14 @@ body {
   font-size: 1rem;
   font-weight: 500;
   letter-spacing: -0.01em;
-  color: var(--ads-text);
+  color: var(--iosgate-text);
 }
 
-.ads-checklist-item + .ads-checklist-item {
+.iosgate-list-item + .iosgate-list-item {
   border-top: 1px solid rgba(85, 112, 134, 0.28);
 }
 
-.ads-check-box {
+.iosgate-check {
   display: flex;
   flex-shrink: 0;
   align-items: center;
@@ -792,11 +792,11 @@ body {
   height: 1.375rem;
   border-radius: 0.3125rem;
   color: #fff;
-  background: var(--ads-primary);
+  background: var(--iosgate-primary);
   box-shadow: 0 2px 8px rgba(20, 117, 225, 0.45);
 }
 
-.ads-cta-app-store {
+.iosgate-store-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -816,7 +816,7 @@ body {
   transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
 }
 
-.ads-cta-app-store:hover {
+.iosgate-store-btn:hover {
   background: #1a1a1a;
   transform: translateY(-1px);
   box-shadow:
@@ -824,17 +824,17 @@ body {
     0 10px 28px rgba(0, 0, 0, 0.45);
 }
 
-.ads-cta-app-store:active {
+.iosgate-store-btn:active {
   transform: translateY(0);
   background: #000;
 }
 
-.ads-cta-app-store:focus-visible {
-  outline: 2px solid var(--ads-primary-bright);
+.iosgate-store-btn:focus-visible {
+  outline: 2px solid var(--iosgate-primary-bright);
   outline-offset: 3px;
 }
 
-.ads-cta-app-store-label {
+.iosgate-store-btn-label {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -844,7 +844,7 @@ body {
   text-align: left;
 }
 
-.ads-cta-app-store-kicker {
+.iosgate-store-btn-kicker {
   font-size: 0.625rem;
   font-weight: 400;
   letter-spacing: 0.04em;
@@ -852,18 +852,19 @@ body {
   color: rgba(255, 255, 255, 0.88);
 }
 
-.ads-cta-app-store-title {
+.iosgate-store-btn-title {
   font-size: 1.125rem;
   font-weight: 600;
   letter-spacing: -0.02em;
   color: #fff;
 }
 
-.ads-footer-note {
+.iosgate-note {
   margin: 0.625rem 0 0;
   text-align: center;
   font-size: 0.75rem;
   line-height: 1.45;
-  color: color-mix(in oklab, var(--ads-text-muted), transparent 15%);
+  color: color-mix(in oklab, var(--iosgate-text-muted), transparent 15%);
 }
+
 

@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef } from "react";
 import {
-  goToIosAppStore,
   goToIosAppStoreDeeplink,
   isLikelyIosDevice,
   logAdsBeacon,
@@ -59,8 +58,7 @@ export default function AdsPageClient() {
     // if navigation failed or the in-app browser kept the user on this page.
     if (now - lastTapAtRef.current < 800) return;
     lastTapAtRef.current = now;
-    // Manual tap: https is the reliable fallback (deeplink can fail in webviews).
-    goToIosAppStore("ads_app_store_redirect");
+    goToIosAppStoreDeeplink("ads_app_store_redirect");
   }, []);
 
   useEffect(() => {
@@ -71,16 +69,13 @@ export default function AdsPageClient() {
     if (!isLikelyIosDevice()) return;
 
     const timer = window.setTimeout(() => {
-      const now = Date.now();
-      if (now - lastTapAtRef.current < 800) return;
-      lastTapAtRef.current = now;
-      goToIosAppStoreDeeplink("ads_app_store_redirect");
+      continueToAppStore();
     }, AUTO_REDIRECT_MS);
 
     return () => {
       window.clearTimeout(timer);
     };
-  }, []);
+  }, [continueToAppStore]);
 
   return (
     <main className="iosgate-shell">

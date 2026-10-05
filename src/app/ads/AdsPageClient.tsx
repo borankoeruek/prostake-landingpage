@@ -2,7 +2,12 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef } from "react";
-import { goToIosAppStore, logAdsBeacon } from "../../lib/logAdsBeacon";
+import {
+  goToIosAppStore,
+  goToIosAppStoreDeeplink,
+  isLikelyIosDevice,
+  logAdsBeacon,
+} from "../../lib/logAdsBeacon";
 
 function BulletCheck() {
   return (
@@ -54,20 +59,28 @@ export default function AdsPageClient() {
     // if navigation failed or the in-app browser kept the user on this page.
     if (now - lastTapAtRef.current < 800) return;
     lastTapAtRef.current = now;
+    // Manual tap: https is the reliable fallback (deeplink can fail in webviews).
     goToIosAppStore("ads_app_store_redirect");
   }, []);
 
   useEffect(() => {
     logAdsBeacon("ads_page_view");
 
+    // Auto-open only via App Store deeplink on iOS. Skip https auto-nav —
+    // desktop / non-iOS keep the page and use the button.
+    if (!isLikelyIosDevice()) return;
+
     const timer = window.setTimeout(() => {
-      continueToAppStore();
+      const now = Date.now();
+      if (now - lastTapAtRef.current < 800) return;
+      lastTapAtRef.current = now;
+      goToIosAppStoreDeeplink("ads_app_store_redirect");
     }, AUTO_REDIRECT_MS);
 
     return () => {
       window.clearTimeout(timer);
     };
-  }, [continueToAppStore]);
+  }, []);
 
   return (
     <main className="ads-shell">
@@ -117,7 +130,8 @@ export default function AdsPageClient() {
       </button>
 
       <p className="ads-footer-note">
-        Redirecting to the App Store… Tap the button if nothing happens.
+        On iPhone we open the App Store automatically. Tap the button if
+        nothing happens.
       </p>
     </main>
   );

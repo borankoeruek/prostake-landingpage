@@ -667,10 +667,19 @@ body {
   --ads-primary-bright: #3b9bff;
 
   display: flex;
+  /* svh = stable viewport; avoids jump/clip from mobile browser chrome.
+     Keep dvh as a fallback for older engines that lack svh. */
   min-height: 100dvh;
+  min-height: 100svh;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* Start-aligned by default. Vertically centering a flex column that is
+     taller than the viewport clips the top, and that overflow is often not
+     scrollable in mobile / in-app browsers — so users only saw the CTA. */
+  justify-content: flex-start;
+  box-sizing: border-box;
+  overflow-x: clip;
+  overflow-y: auto;
   font-family:
     var(--font-geist-sans),
     -apple-system,
@@ -690,6 +699,13 @@ body {
   );
 }
 
+/* Only center when there is clearly enough vertical room. */
+@media (min-height: 720px) {
+  .ads-landing-root {
+    justify-content: center;
+  }
+}
+
 .ads-shell {
   display: flex;
   width: 100%;
@@ -697,7 +713,7 @@ body {
   flex-direction: column;
   gap: 0.875rem;
   padding: max(1rem, env(safe-area-inset-top)) 1.25rem
-    max(1rem, env(safe-area-inset-bottom));
+    max(1.25rem, env(safe-area-inset-bottom));
 }
 
 .ads-card {

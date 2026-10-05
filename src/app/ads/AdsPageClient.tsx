@@ -42,18 +42,32 @@ const HIGHLIGHTS = [
   "Secure download",
 ] as const;
 
+/** Brief delay so page_view can log and the UI can paint before navigation. */
+const AUTO_REDIRECT_MS = 450;
+
 export default function AdsPageClient() {
-  const redirectedRef = useRef(false);
+  const lastTapAtRef = useRef(0);
 
   const continueToAppStore = useCallback(() => {
-    if (redirectedRef.current) return;
-    redirectedRef.current = true;
+    const now = Date.now();
+    // Debounce double-taps / auto+manual overlap; allow a real second attempt
+    // if navigation failed or the in-app browser kept the user on this page.
+    if (now - lastTapAtRef.current < 800) return;
+    lastTapAtRef.current = now;
     goToIosAppStore("ads_app_store_redirect");
   }, []);
 
   useEffect(() => {
     logAdsBeacon("ads_page_view");
-  }, []);
+
+    const timer = window.setTimeout(() => {
+      continueToAppStore();
+    }, AUTO_REDIRECT_MS);
+
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, [continueToAppStore]);
 
   return (
     <main className="ads-shell">
@@ -103,7 +117,7 @@ export default function AdsPageClient() {
       </button>
 
       <p className="ads-footer-note">
-        You will be redirected to the App Store.
+        Redirecting to the App Store… Tap the button if nothing happens.
       </p>
     </main>
   );

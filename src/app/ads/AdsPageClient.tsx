@@ -49,10 +49,14 @@ const HIGHLIGHTS = [
 /** Brief delay so page_view can log and the UI can paint before navigation. */
 const AUTO_REDIRECT_MS = 450;
 
+/** Temp kill-switch: set to `true` to re-enable auto + button App Store redirect. */
+const ADS_REDIRECT_ENABLED = false;
+
 export default function AdsPageClient() {
   const lastTapAtRef = useRef(0);
 
   const continueToAppStore = useCallback(() => {
+    if (!ADS_REDIRECT_ENABLED) return;
     const now = Date.now();
     // Debounce double-taps / auto+manual overlap; allow a real second attempt
     // if navigation failed or the in-app browser kept the user on this page.
@@ -62,6 +66,8 @@ export default function AdsPageClient() {
   }, []);
 
   useEffect(() => {
+    if (!ADS_REDIRECT_ENABLED) return;
+
     logAdsBeacon("ads_page_view");
 
     // Auto-open only via App Store deeplink on iOS. Skip https auto-nav —
